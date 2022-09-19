@@ -1,0 +1,23 @@
+.brand{
+    width: 15rem;
+    height: 80%;
+    vertical-align: middle;
+    object-fit: contain;
+}
+.profile-position{
+    position: absolute;
+    left: 75rem;
+    right: 10px;
+  }
+  .profile-pic{
+      width: 4rem;
+      height: 4rem;
+      object-fit: cover;
+      vertical-align: baseline;
+  }
+/* .brand-box{
+ background-size: 25% 25%;
+ background-repeat: no-repeat;
+  background-image: url('brand.png');
+  
+} */

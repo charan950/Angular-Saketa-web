@@ -1,0 +1,255 @@
+/* You can add global styles to this file, and also import other style files */
+.brand{
+    width: 15rem;
+    height: 80%;
+    vertical-align: middle;
+    object-fit: contain;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+/* .brand-box{
+ background-size: 25% 25%;
+ background-repeat: no-repeat;
+  background-image: url('brand.png');
+  
+} */
+.job-drowpdown{
+  width: 290px;
+  color: #000;
+}
+.profile-position{
+  position: absolute;
+  left: 75rem;
+  right: 10px;
+}
+.profile-pic{
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    vertical-align: baseline;
+}
+#alpha{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+    grid-gap: 0.8rem;
+  
+
+}
+.grid{
+
+    background-color: rgba(0,177,252,255);
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    color: white;
+    border: none;
+    font-size: 20px;
+ 
+}
+.alpha-pro{
+   width: 1.5rem;
+   height: 1.5rem;
+   align-items: center;
+   
+}
+#empList{
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    grid-auto-rows: minmax(100px, auto);
+    margin: 20px;
+    grid-column-gap: 20px;
+
+}
+.list{
+    background-color: rgb(221, 220, 220);
+    width: auto;
+    display: flex;
+   flex-direction: column;
+}
+.profile{
+    width: 100%;
+    height: 6.5rem;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+.icon{
+    width: 1rem;
+    margin: 3px;
+}
+#form{
+    border: 1px solid;
+    align-items: center;
+    padding: 10px;
+    margin: 50px;
+    
+}
+.formpopup{
+    display: none;
+}
+input{
+   
+    height:40px;
+    padding-left:25px;   
+}
+.search{
+    position: relative;
+    }
+
+    .search input{
+
+     height: 40px;
+     width: 15rem;
+     text-indent: 30px;
+     border: 2px solid #d6d4d4;
+
+
+    }
+
+    .search .fa-search{
+
+     position: absolute;
+     top: 25px;
+     left: 95px;
+
+    }
+
+.clear-button{
+    background-color: rgba(105,186,0,255);
+    color:white;
+    padding-left: 10px;
+    border: none;
+    
+}
+.add-button{
+    float: right;
+    background-color: rgba(0,177,252,255);
+    align-items: center;
+    color: white;
+    border:none;
+    font-size: 15px;
+    font-weight: 500;
+}
+.list-border{
+    border: 1px solid rgb(189, 186, 186);
+    height: 550px;
+}
+select{
+    width:10rem;
+    height: 40px;
+    text-indent: 10px;
+    border: 2px solid #d6d4d4;
+    color:rgb(165, 165, 165);
+   
+}
+.formPopup {
+    display: none;
+    position: fixed;
+    left: 45%;
+    /* top: 5%; */
+    transform: translate(-50%, 5%);
+    border: 3px solid #999999;
+   
+  }
+
+
+  input[type=text], input[type=password] {
+   
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+   
+  }
+  #viewmore{
+    display: none;
+  }
+  .sidebar div{
+    cursor: pointer;
+  }
+  .sidebar div:hover{
+    color: #1c8fd1;
+  }
+   
+  /* button:focus {
+    background-color: rgb(10, 10, 19);
+  } */
+  
+  
+  .hover{
+    cursor: pointer;
+    color: #999999;
+  }
+
+  button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+  }
+ 
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+  
+
+  .imgcontainer {
+    text-align: center;
+    position: relative;
+  }
+  
+  img.avatar {
+    width: 30%;
+    border-radius: 50%;
+  }
+  
+  .container {
+    padding: 16px;
+  }
+  
+  .modal {
+   
+    display: none;
+    width: 100%; 
+  
+  }
+  
+
+  .modal-content {
+    padding-top: 50px;
+    background-color: #fefefe;
+    margin-left:25%; 
+    width: 50%; 
+  }
+  
+
+  .close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: red;
+    cursor: pointer;
+  }
+  .det-form{
+    align-items: center;
+    height: 200px;
+    display: none;
+  }
+  img.det-pic {
+    width: 200px;
+    border-radius: 50%;
+  }
