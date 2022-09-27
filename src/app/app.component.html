@@ -35,20 +35,28 @@
        </section>
        </div>
         <div class="col me-5">
-            
-                    <app-alphabets></app-alphabets>
-                  
+          <div class="row">
+            <div class="col p-0">
+              <div id="alpha" >
+                <div *ngFor="let alpha of alphaArray"  >
+                  <button class ="grid" (click)="onKeyUp(alpha,true)">{{alpha}}</button>
+                </div>
+              </div>
+            </div>
+          </div>
             <div class="row">
               <div class="col p-0">
                 <div class="search mt-2 mb-2" >
-                  <label class="fs-5 m-3 ms-0">Search</label>!--<i class="fa fa-search"></i>
-                  <input type="text" #searchbox placeholder="Enter Any Keyword"(keyup)="searchboxValue(searchbox.value)" >
+                 
+                  <label class="fs-5 m-3 ms-0">Search</label><i class="fa fa-search"></i>
+                  <input type="text" name="search"   #searchtext (keyup)="onKeyUp(searchtext.value,false)">
                   <button type="button" class="clear-button ms-3 p-2 ps-4 pe-4 " >clear</button>
                   <span class="fs-5 m-3 ms-5 ps-4">Filter By</span>
-                  <select class="border-1" #select (change)="onSelected(select.value)"  >
-                      <option *ngFor="let array of fillterbyarray">{{array}}</option>
+                  <select class="border-1" #teams (change)="onSelected(teams.value)" >
+                    <option value="" [selected]=true [disabled]="true">FilterBy</option>
+                      <option *ngFor="let element of fillterbyarray" >{{element}}</option>
                   </select> 
-                  <button  class="add-button m-0" ><a routerLink="/addemployee" >Add Employee</a></button>
+                  <button type="button" class="add-button m-0" (click)="openpop()">Add Employee</button>
                 </div>
               </div>
             </div>
@@ -62,7 +70,30 @@
             <div class="row ">
               <div class="col p-0 ">
                 <div class="list-border overflow-auto">
-                  <router-outlet></router-outlet>
+                  <!-- <app-search-filter [filteredemployee]="filteredemployee"></app-search-filter> -->
+                    <router-outlet></router-outlet>
+                
+                  <!-- <div id="empList">
+                    <-- <div *ngFor="let emp of employelistArray | filter:searchtext" >
+                      <div class="list" >
+                          <div class="row">
+                              <div class="col-4 ">
+                                <img class="profile p-2 " src=".\assets\Images\Image1.jfif">
+                              </div>
+                          <div class="col p-0">
+                              <div>{{emp.FirstName}} {{emp.LastName}}</div>
+                              <div>{{emp.Job}}</div>
+                              <div>{{emp.Department}}</div>
+                              <i><img class="icon" src="./assets/Images/call-grey.png"></i>
+                              <i><img class="icon" src="./assets/Images/popup.png"></i>
+                              <i><img class="icon" src="./assets/Images/message.png"></i>
+                              <i><img class="icon" src="./assets/Images/heart.png"></i>
+                              <i><img class="icon" src="./assets/Images/star.png"></i>
+                          </div>
+                        </div>
+                      </div>
+                      </div>    --
+                  </div> -->
                 </div>
               </div> 
             </div>

@@ -1,5 +1,4 @@
-<!-- <div id="empList">
-  <div *ngFor="let emp of employelistArray ">
+<!-- <div *ngFor="let emp of allemployees" >
     <div class="list" >
         <div class="row">
             <div class="col-4 ">
@@ -17,14 +16,26 @@
         </div>
       </div>
     </div>
-    </div>   
-</div>
-        
-
-
-  
-
-
-     -->
-
-     <button (click)="get()">List</button>
+    !-- </div>  --
+   <button type="button"(click)='geta()'>a</button> -->
+    <div id="empList">
+        <div *ngFor="let emp of filterlist " (click)="getDetails(emp)">
+          <div class="list" >
+              <div class="row">
+                  <div class="col-4 ">
+                    <img class="profile p-2 " src=".\assets\Images\Image1.jfif">
+                  </div>
+              <div class="col p-0">
+                  <div>{{emp.FirstName}} {{emp.LastName}}</div>
+                  <div>{{emp.Job}}</div>
+                  <div>{{emp.Department}}</div>
+                  <i><img class="icon" src="./assets/Images/call-grey.png"></i>
+                  <i><img class="icon" src="./assets/Images/popup.png"></i>
+                  <i><img class="icon" src="./assets/Images/message.png"></i>
+                  <i><img class="icon" src="./assets/Images/heart.png"></i>
+                  <i><img class="icon" src="./assets/Images/star.png"></i>
+              </div>
+            </div>
+          </div>
+          </div>    
+      </div>

@@ -1,63 +1,67 @@
-
-
-  <form (load)="updatedetails()">
+<!-- 
+<form >
     <div class="form-group">
       <label for="name">FirstName</label>
-      <input type="text" class="form-control" 
+      <input type="text" class="form-control" id="name"
              required
-             [(ngModel)]="firstname" name="firstname"   >
+             [(ngModel)]="FirstName" name="name" >
     </div>
-   
+    
     <div class="form-group">
       <label for="alterEgo">LastName</label>
-      <input type="text"  class="form-control" 
-             [(ngModel)]="lastname" name="lastname">
+      <input type="text"  class="form-control" id="alterEgo"
+             [(ngModel)]="LastName" name="alterEgo">
     </div>
     <div class="form-group">
       <label for="name">PrefferedName</label>
-      <input type="text" class="form-control" 
+      <input type="text" class="form-control" id="name"
              required
-             [(ngModel)]="preferredname" name="preferredname" >
+             [(ngModel)]="PreferredName" name="name" >
     </div>
     <div class="form-group">
       <label for="name">Email</label>
-      <input type="text" class="form-control" 
+      <input type="text" class="form-control" id="name"
              required
-             [(ngModel)]="email" name="email" >
+             [(ngModel)]="Email" name="name" >
     </div>
     <div class="form-group">
       <label for="name">Job</label>
       <select class="border-1 form-control w-100" #job (click)="getJob(job.value)">
         <option value="" [selected]=true [disabled]="true">Select Job Title</option>
-        <option *ngFor="let element of jobsList" >{{element}}</option>
+        <option *ngFor="let array of jobsList" >{{array}}</option>
       </select> 
     </div>
     <div class="form-group">
       <label for="name">Office</label>
       <select class="border-1  form-control " #office (click)="getOffice(office.value)">
         <option value="" [selected]=true [disabled]="true">Select Office</option>
-        <option *ngFor="let element of officeList" >{{element}}</option>
+        <option *ngFor="let array of officeList" >{{array}}</option>
       </select>
     </div>
     <div class="form-group">
       <label for="name">Department</label>
       <select class="border-1 form-control" #department (click)="getDepartment(department.value)" >
         <option value="" [selected]=true [disabled]="true">Select Department</option>
-        <option *ngFor="let element of departmentList" >{{element}}</option>
+        <option *ngFor="let array of departmentList" >{{array}}</option>
       </select>
     </div>
     <div class="form-group">
       <label for="name">Phone Number</label>
-      <input type="text" class="form-control" 
+      <input type="text" class="form-control" id="name"
              required
-             [(ngModel)]="phonenumber" name="phonenumber" >
+             [(ngModel)]="PhoneNumber" name="name" >
     </div>
     <div class="form-group">
       <label for="name">SkypeId</label>
-      <input type="text" class="form-control" 
+      <input type="text" class="form-control" id="name"
              required
-             [(ngModel)]="skypeid" name="skypeid" >
+             [(ngModel)]="SkypeId" name="name" >
     </div>
-   <button type="button" (click)="onUpdateClick()">Update</button>
-</form>
-    
+    !-- <div class="form-group">
+      <label for="name">SkypeId</label>
+      <input type="text" class="form-control" id="name"
+             required
+             [(ngModel)]="SkypeId" name="name" >
+    </div> --
+    <button type="button" (click)="addEmployee()">Add</button>
+    </form> -->

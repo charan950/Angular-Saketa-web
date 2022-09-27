@@ -16,15 +16,27 @@ export class DepartmentDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.EmployeelistArray=this.employeelist.getDetails();
-    console.log(this.EmployeelistArray.length);
+    this.EmployeelistArray=this.employeelist.getEmployeeList();
+   
     this.route.paramMap.subscribe((params : ParamMap)=> {  
     this.dep=params.get('id');  
-    console.log(this.dep);
+    
     for(let i=0;i<this.EmployeelistArray.length;i++){
       if(this.EmployeelistArray[i].Department==this.dep){
-        console.log('done');
+        console.log('done')
         this.filterdListArray[i]=this.EmployeelistArray[i];
+      }
+      else if(this.EmployeelistArray[i].office==this.dep){
+        console.log('de')
+        this.filterdListArray[i]=this.EmployeelistArray[i];
+      }
+    
+      else if(this.EmployeelistArray[i].Job==this.dep){
+       
+        this.filterdListArray[i]=this.EmployeelistArray[i];
+      }
+      else{
+        this.filterdListArray=[];
       }
     }
     });  
