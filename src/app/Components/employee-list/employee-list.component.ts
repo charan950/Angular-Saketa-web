@@ -72,7 +72,7 @@ export class EmployeeListComponent implements OnInit {
               }
             }
             else{
-              console.log('done')
+             
               this.newlist=[];
               this.filterlist=[];
             }
@@ -104,7 +104,7 @@ export class EmployeeListComponent implements OnInit {
               }
             }
             else{
-              console.log('done')
+             
               this.newlist=[];
               this.filterlist=[];
             }
@@ -136,7 +136,7 @@ export class EmployeeListComponent implements OnInit {
               }
             }
             else{
-              console.log('done')
+             
               this.newlist=[];
               this.filterlist=[];
             }
@@ -168,7 +168,7 @@ export class EmployeeListComponent implements OnInit {
               }
             }
             else{
-              console.log('done')
+            
               this.newlist=[];
               this.filterlist=[];
             }
@@ -200,7 +200,7 @@ export class EmployeeListComponent implements OnInit {
               }
             }
             else{
-              console.log('done')
+            
               this.newlist=[];
               this.filterlist=[];
             }
