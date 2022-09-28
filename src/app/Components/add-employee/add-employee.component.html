@@ -2,62 +2,52 @@
    
   <form >
    
-    <div class="form-group">
-      <label for="name">FirstName</label>
+      <label>FirstName</label>
       <input type="text"  id="name"
              
              [(ngModel)]="FirstName" name="fname" required >
-    </div>
-    <div class="form-group">
-      <label for="LastName">LastName</label>
+   
+      <label >LastName</label>
       <input type="text"   
              [(ngModel)]="LastName" name="LastName" #lname (keyup)="autoPopulate(pname.value)" >
-    </div>
-    <div class="form-group">
-      <label for="lname">PrefferedName</label>
+   
+      <label >PrefferedName</label>
       <input type="text"  
              required
              [ngModel]="LastName" name="LastName" #pname (keyup)="autoPopulate(pname.value)" >
-    </div>
-    <div class="form-group">
-      <label for="name">Email</label>
-      <input type="text"  
+   
+      <label>Email</label>
+      <input type="email"  
              required
              [(ngModel)]="Email" name="email" >
-    </div>
-    <div class="form-group">
-      <label for="name">Job</label>
+   
+      <label>Job</label>
       <select class="border-1 form-control w-100" #job (click)="getJob(job.value)">
         <option value="" [selected]=true [disabled]="true">Select Job Title</option>
         <option *ngFor="let element of jobsList" >{{element}}</option>
       </select> 
-    </div>
-    <div class="form-group">
-      <label for="name">Office</label>
+   
+      <label>Office</label>
       <select class="border-1  form-control " #office (click)="getOffice(office.value)">
         <option value="" [selected]=true [disabled]="true">Select Office</option>
         <option *ngFor="let element of officeList" >{{element}}</option>
       </select>
-    </div>
-    <div class="form-group">
+   
       <label for="name">Department</label>
       <select class="border-1 form-control" #department (click)="getDepartment(department.value)" >
         <option value="" [selected]=true [disabled]="true">Select Department</option>
         <option *ngFor="let element of departmentList" >{{element}}</option>
       </select>
-    </div>
-    <div class="form-group">
+   
       <label for="name">Phone Number</label>
       <input type="text"  
              required
              [(ngModel)]="PhoneNumber" name="PhoneNumber" >
-    </div>
-    <div class="form-group">
+   
       <label for="name">SkypeId</label>
       <input type="text"  
              required
              [(ngModel)]="SkypeId" name="SkypeId" >
-    </div>
    
     <button type="button" (click)="addEmployee()">Add</button>
     </form>
