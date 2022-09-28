@@ -42,7 +42,7 @@
     <div class="form-group">
       <label for="name">Department</label>
       <select class="border-1 form-control" #department (click)="getDepartment(department.value)" >
-        <option value="" [selected]=true [disabled]="true">Select Department</option>
+        <option value="department.value">{{department}}</option>
         <option *ngFor="let element of departmentList" >{{element}}</option>
       </select>
     </div>

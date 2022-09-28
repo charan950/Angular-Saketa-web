@@ -1,9 +1,4 @@
-<!-- <div id="add-form" class="modal">
-  <form class="modal-content animate">
-    <div class="imgcontainer">
-      <span onclick=closeAddForm() class="close" title="Close Modal">&times;</span>
-      <img src="./Images/Image1.jfif" alt="Avatar" class="avatar">
-    </div> -->
+
    
   <form >
    
@@ -14,12 +9,12 @@
              [(ngModel)]="FirstName" name="fname" required >
     </div>
     <div class="form-group">
-      <label for="alterEgo">LastName</label>
+      <label for="LastName">LastName</label>
       <input type="text"  class="form-control" 
              [(ngModel)]="LastName" name="LastName" #lname (keyup)="autoPopulate(pname.value)" >
     </div>
     <div class="form-group">
-      <label for="name">PrefferedName</label>
+      <label for="pname">PrefferedName</label>
       <input type="text" class="form-control" 
              required
              [ngModel]="LastName" name="LastName" #pname (keyup)="autoPopulate(pname.value)" >
@@ -63,12 +58,8 @@
              required
              [(ngModel)]="SkypeId" name="SkypeId" >
     </div>
-    <!-- <div class="form-group">
-      <label for="name">SkypeId</label>
-      <input type="text" class="form-control" id="name"
-             required
-             [(ngModel)]="SkypeId" name="name" >
-    </div> -->
+   
     <button type="button" (click)="addEmployee()">Add</button>
     </form>
     
+  

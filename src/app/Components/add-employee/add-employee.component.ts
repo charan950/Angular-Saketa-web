@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Employee } from 'src/app/Model/employee';
 import { EmployeeListService } from 'src/app/Service/employee-list.service';
-
+import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-add-employee',

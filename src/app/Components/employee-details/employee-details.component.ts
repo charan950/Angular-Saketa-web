@@ -19,6 +19,7 @@ export class EmployeeDetailsComponent implements OnInit {
  preferredname:string;
  job:string;
  office:string;
+ s='sai';
  department:string;
  phonenumber:Number;
  email:string;
