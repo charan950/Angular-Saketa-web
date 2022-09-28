@@ -13,11 +13,15 @@
     <div><a [routerLink]="['/sidebar','Recruiting Expert']">Recruiting Expert({{recount}})</a></div>
     <div><a [routerLink]="['/sidebar','BI Developer']">BI Developer({{bicount}})</a></div>
     <div><a [routerLink]="['/sidebar','Business Analyst']">Business Analyst({{bacount}})</a></div>
-    <a  ng-model="more" (click)="viewMore()" class="text-primary">view more</a>
     <div *ngIf='more'>
+        <a   (click)="viewMore()" class="text-primary">view more</a>
+    </div>
+    <div *ngIf="less">
         <div><a [routerLink]="['/sidebar','Operations Manger']">Operations Manger({{omcount}})</a></div>
         <div><a [routerLink]="['/sidebar','Product Manger']">Product Manger({{pmcount}})</a></div>
         <div><a [routerLink]="['/sidebar','Software Engineer']">Software Engineer({{secount}})</a></div>
-        <a  ng-model="more" (click)="viewLess()">view less</a>
+        <a  ng-model="more" class="text-primary" (click)="viewLess()">view less</a>
     </div>
+    
+
    

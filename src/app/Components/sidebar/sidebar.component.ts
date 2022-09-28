@@ -12,13 +12,15 @@ export class SidebarComponent implements OnInit {
 itcount=0;hrcount=0;mdcount=0;salescount=0;seatlecount=0;indiacount=0;
 sharepointcount=0;netcount=0;bicount=0;bacount=0;recount=0;omcount=0;pmcount=0;secount=0;
    more:boolean;
-   atag:boolean
+   less:boolean
+
 constructor(private employeelistservice:EmployeeListService) { 
   
 }
 
   ngOnInit(): void {
-
+    this.more=true;
+   
     this.employeelistservice.itcount.subscribe(res=>{
       this.itcount=res;
       console.log(this.itcount)
@@ -65,15 +67,15 @@ constructor(private employeelistservice:EmployeeListService) {
    
     
   }
-  submit(){
-    console.log('sai');
-  }
+ 
   viewMore(){
    
-    this.more=true;
+    this.more=false;
+    this.less=true;
   }
   viewLess(){
-    this.more=false;
+    this.less=false;
+    this.more=true;
   }
    
   }
