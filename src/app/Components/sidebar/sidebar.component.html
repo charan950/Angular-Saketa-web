@@ -14,7 +14,7 @@
     <div><a [routerLink]="['/sidebar','BI Developer']">BI Developer({{bicount}})</a></div>
     <div><a [routerLink]="['/sidebar','Business Analyst']">Business Analyst({{bacount}})</a></div>
     <div *ngIf='more'>
-        <a   (click)="viewMore()" class="text-primary">view more</a>
+        <a  (click)="viewMore()" class="text-primary">view more</a>
     </div>
     <div *ngIf="less">
         <div><a [routerLink]="['/sidebar','Operations Manger']">Operations Manger({{omcount}})</a></div>
