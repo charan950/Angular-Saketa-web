@@ -23,45 +23,43 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit(): void {
    
-    this.filterlist=this.employeelistservice.getEmployeeList();
-    
-   
+    this.filterlist=this.employeelistservice.Allemployees;
     this.employeelistservice.filterby.subscribe(res=>{
-      // if(res=='preferredname'){
-      //   console.log('pnmae')
-      //   for(let emp of this.filterlist){
-      //     this.employeelistservice.searchText.subscribe(text=>{
-      //       if(text==''){
-      //         console.log('emt')
-      //         this.filterlist;
-      //       }
-      //       if(emp.PreferredName.includes(text)){
-      //         console.log('emst')
-      //         if(!this.newlist.includes(emp)){
-      //           this.newlist.push(emp);
-      //           this.filterlist=this.newlist;
-      //         }
-      //       }
-      //       else{
+      if(res=='preferredname'){
+        console.log('pnmae')
+        for(let emp of this.filterlist){
+          this.employeelistservice.searchText.subscribe(text=>{
+            if(text==''){
+              console.log('emt')
+              this.filterlist;
+            }
+            if(emp.PreferredName.includes(text)){
+              console.log('emst')
+              if(!this.newlist.includes(emp)){
+                this.newlist.push(emp);
+                this.filterlist=this.newlist;
+              }
+            }
+            else{
              
-      //         this.newlist=[];
-      //         this.filterlist=[];
-      //       }
-      //     })
-      //     this.employeelistservice.alphabet.subscribe(alpha=>{
-      //       if(emp.PreferredName.startsWith(alpha.toLocaleLowerCase())){
-      //         if(!this.newlist.includes(emp)){
-      //           this.newlist.push(emp);
-      //           this.filterlist=this.newlist;
-      //         }
-      //       } 
-      //       else{
-      //         this.newlist=[];
-      //         this.filterlist=[];
-      //       }        
-      //     })
-      //   }
-      // }
+              this.newlist=[];
+              this.filterlist=[];
+            }
+          })
+          this.employeelistservice.alphabet.subscribe(alpha=>{
+            if(emp.PreferredName.startsWith(alpha.toLocaleLowerCase())){
+              if(!this.newlist.includes(emp)){
+                this.newlist.push(emp);
+                this.filterlist=this.newlist;
+              }
+            } 
+            else{
+              this.newlist=[];
+              this.filterlist=[];
+            }        
+          })
+        }
+      }
       if(res=='Firstname'){
       
         for(let emp of this.filterlist){

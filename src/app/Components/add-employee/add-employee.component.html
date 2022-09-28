@@ -4,24 +4,24 @@
    
     <div class="form-group">
       <label for="name">FirstName</label>
-      <input type="text" class="form-control" id="name"
+      <input type="text"  id="name"
              
              [(ngModel)]="FirstName" name="fname" required >
     </div>
     <div class="form-group">
       <label for="LastName">LastName</label>
-      <input type="text"  class="form-control" 
+      <input type="text"   
              [(ngModel)]="LastName" name="LastName" #lname (keyup)="autoPopulate(pname.value)" >
     </div>
     <div class="form-group">
-      <label for="pname">PrefferedName</label>
-      <input type="text" class="form-control" 
+      <label for="lname">PrefferedName</label>
+      <input type="text"  
              required
              [ngModel]="LastName" name="LastName" #pname (keyup)="autoPopulate(pname.value)" >
     </div>
     <div class="form-group">
       <label for="name">Email</label>
-      <input type="text" class="form-control" 
+      <input type="text"  
              required
              [(ngModel)]="Email" name="email" >
     </div>
@@ -48,13 +48,13 @@
     </div>
     <div class="form-group">
       <label for="name">Phone Number</label>
-      <input type="text" class="form-control" 
+      <input type="text"  
              required
              [(ngModel)]="PhoneNumber" name="PhoneNumber" >
     </div>
     <div class="form-group">
       <label for="name">SkypeId</label>
-      <input type="text" class="form-control" 
+      <input type="text"  
              required
              [(ngModel)]="SkypeId" name="SkypeId" >
     </div>
