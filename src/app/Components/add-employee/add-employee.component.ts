@@ -22,7 +22,8 @@ export class AddEmployeeComponent implements OnInit {
   PhoneNumber:Number;
   SkypeId:string;
   employee:Employee;
-  jobsList=['SharePoint Practice Head','.Net Development Lead','Recruiting Expert','BI Developer','Business Analyst']
+  jobsList=['SharePoint Practice Head','.Net Development Lead','Recruiting Expert','BI Developer','Business Analyst',
+  'Operations Manger','Product Manger','Software Engineer']
   officeList=['Seatle','India'];
   departmentList=['IT Department','Human Resources','MD Department','Sales']
   constructor(private employeelistservice:EmployeeListService,private router:Router,private dialog:MatDialog ) { }

@@ -22,50 +22,56 @@ export class EmployeeListComponent implements OnInit {
   constructor(private employeelistservice:EmployeeListService,private router:Router,private dialog:MatDialog) { }
 
   ngOnInit(): void {
-    this.allemployees = this.employeelistservice.getEmployeeList();
-    this.filterlist=this.allemployees;
-    console.log(this.filterlist.length)
+   
+    this.filterlist=this.employeelistservice.getEmployeeList();
+    
    
     this.employeelistservice.filterby.subscribe(res=>{
-      if(res=='preferredname'){
-        for(let emp of this.allemployees){
-          this.employeelistservice.searchText.subscribe(text=>{
-            if(text==''){
-              this.filterlist=this.allemployees
-            }
-            if(emp.PreferredName.includes(text)){
-              if(!this.newlist.includes(emp)){
-                this.newlist.push(emp);
-                this.filterlist=this.newlist;
-              }
-            }
-            else{
-              console.log('done')
-              this.newlist=[];
-              this.filterlist=[];
-            }
-          })
-          this.employeelistservice.alphabet.subscribe(alpha=>{
-            if(emp.PreferredName.startsWith(alpha.toLocaleLowerCase())){
-              if(!this.newlist.includes(emp)){
-                this.newlist.push(emp);
-                this.filterlist=this.newlist;
-              }
-            } 
-            else{
-              this.newlist=[];
-              this.filterlist=[];
-            }        
-          })
-        }
-      }
+      // if(res=='preferredname'){
+      //   console.log('pnmae')
+      //   for(let emp of this.filterlist){
+      //     this.employeelistservice.searchText.subscribe(text=>{
+      //       if(text==''){
+      //         console.log('emt')
+      //         this.filterlist;
+      //       }
+      //       if(emp.PreferredName.includes(text)){
+      //         console.log('emst')
+      //         if(!this.newlist.includes(emp)){
+      //           this.newlist.push(emp);
+      //           this.filterlist=this.newlist;
+      //         }
+      //       }
+      //       else{
+             
+      //         this.newlist=[];
+      //         this.filterlist=[];
+      //       }
+      //     })
+      //     this.employeelistservice.alphabet.subscribe(alpha=>{
+      //       if(emp.PreferredName.startsWith(alpha.toLocaleLowerCase())){
+      //         if(!this.newlist.includes(emp)){
+      //           this.newlist.push(emp);
+      //           this.filterlist=this.newlist;
+      //         }
+      //       } 
+      //       else{
+      //         this.newlist=[];
+      //         this.filterlist=[];
+      //       }        
+      //     })
+      //   }
+      // }
       if(res=='Firstname'){
-        for(let emp of this.allemployees){
+      
+        for(let emp of this.filterlist){
           this.employeelistservice.searchText.subscribe(text=>{
             if(text==''){
-              this.filterlist=this.allemployees
+           
+              this.filterlist
             }
             if(emp.FirstName.includes(text)){
+               console.log('fnames')
               if(!this.newlist.includes(emp)){
                 this.newlist.push(emp);
                 this.filterlist=this.newlist;
@@ -91,11 +97,11 @@ export class EmployeeListComponent implements OnInit {
           })
         }
       }
-      if(res=='LastName'){
-        for(let emp of this.allemployees){
+      else if(res=='LastName'){
+        for(let emp of this.filterlist){
           this.employeelistservice.searchText.subscribe(text=>{
             if(text==''){
-              this.filterlist=this.allemployees
+              this.filterlist
             }
             if(emp.LastName.toLocaleLowerCase().includes(text.toLocaleLowerCase())){
               if(!this.newlist.includes(emp)){
@@ -123,11 +129,11 @@ export class EmployeeListComponent implements OnInit {
           })
         }
       }
-      if(res=='Job'){
-        for(let emp of this.allemployees){
+      else if(res=='Job'){
+        for(let emp of this.filterlist){
           this.employeelistservice.searchText.subscribe(text=>{
             if(text==''){
-              this.filterlist=this.allemployees
+              this.filterlist
             }
             if(emp.Job.toLocaleLowerCase().includes(text.toLocaleLowerCase())){
               if(!this.newlist.includes(emp)){
@@ -155,11 +161,11 @@ export class EmployeeListComponent implements OnInit {
           })
         }
       }
-      if(res=='Office'){
-        for(let emp of this.allemployees){
+      else if(res=='Office'){
+        for(let emp of this.filterlist){
           this.employeelistservice.searchText.subscribe(text=>{
             if(text==''){
-              this.filterlist=this.allemployees
+              this.filterlist
             }
             if(emp.office.toLocaleLowerCase().includes(text.toLocaleLowerCase())){
               if(!this.newlist.includes(emp)){
@@ -187,11 +193,11 @@ export class EmployeeListComponent implements OnInit {
           })
         }
       }
-      if(res=='Department'){
-        for(let emp of this.allemployees){
+     else if(res=='Department'){
+        for(let emp of this.filterlist){
           this.employeelistservice.searchText.subscribe(text=>{
             if(text==''){
-              this.filterlist=this.allemployees
+              this.filterlist
             }
             if(emp.Department.toLocaleLowerCase().includes(text.toLocaleLowerCase())){
               if(!this.newlist.includes(emp)){
@@ -221,10 +227,7 @@ export class EmployeeListComponent implements OnInit {
       }
     })
   }
-
-  openUpdateForm(){
-    
-  }
+ 
  getDetails(employee:Employee){
   
   this.dialog.open(EmployeeDetailsComponent)

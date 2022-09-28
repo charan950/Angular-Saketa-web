@@ -23,8 +23,9 @@ export class EmployeeDetailsComponent implements OnInit {
  phonenumber:Number;
  email:string;
  skypeid:string;
- jobsList=['SharePoint Practice Head','.Net Development Lead','Recruiting Expert','BI Developer','Business Analyst']
-  officeList=['Seatle','India'];
+ jobsList=['SharePoint Practice Head','.Net Development Lead','Recruiting Expert','BI Developer','Business Analyst',
+ 'Operations Manger','Product Manger','Software Engineer']
+   officeList=['Seatle','India'];
   departmentList=['IT Department','Human Resources','MD Department','Sales']
   array: any=[];
   constructor(private route:Router ,private employeelistservice:EmployeeListService,private router:Router,private dialog:MatDialog) { }

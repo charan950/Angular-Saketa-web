@@ -9,24 +9,16 @@ import { EmployeeListService } from 'src/app/Service/employee-list.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-itcount=0;
-   hrcount=0;
-   mdcount=0;
-   salescount=0
-   seatlecount=0
-   indiacount=0
-   sharepointcount=0
-   netcount=0
-   
-   bicount=0
-   bacount=0
-   recount=0
+itcount=0;hrcount=0;mdcount=0;salescount=0;seatlecount=0;indiacount=0;
+sharepointcount=0;netcount=0;bicount=0;bacount=0;recount=0;omcount=0;pmcount=0;secount=0;
+   more:boolean;
+   atag:boolean
 constructor(private employeelistservice:EmployeeListService) { 
   
 }
 
   ngOnInit(): void {
-    
+
     this.employeelistservice.itcount.subscribe(res=>{
       this.itcount=res;
       console.log(this.itcount)
@@ -61,46 +53,28 @@ constructor(private employeelistservice:EmployeeListService) {
     this.employeelistservice.bacount.subscribe(res=>{
       this.bacount=res;
     })
+    this.employeelistservice.omcount.subscribe(res=>{
+      this.omcount=res;
+    })
+    this.employeelistservice.pmcount.subscribe(res=>{
+      this.pmcount=res;
+    })
+    this.employeelistservice.secount.subscribe(res=>{
+      this.secount=res;
+    })
    
     
-    // for(let i=0;i<this.listarray.length;i++){
-    //   if(this.listarray[i].Department=='IT Department'){
-    //     this.itcount++;
-    //    console.log(this.itcount)
-    //   }
-    //   if(this.listarray[i].Department==='HR Department'){
-    //     this.hrcount
-    //   }
-    //   if(this.listarray[i].Department==='MD Department'){
-    //     this.mdcount++;
-    //   }
-    //   if(this.listarray[i].Department==='Sales'){
-    //     this.salescount++;
-    //   }
-    //   if(this.listarray[i].Department==='Seatle'){
-    //     this.seatlecount++;
-    //   }
-    //   if(this.listarray[i].Department==='India'){
-    //     this.indiacount++;
-    //   }
-    //   if(this.listarray[i].Department==='SharePoint Practice Head'){
-    //     this.sharepointcount++;
-    //   }
-    //   if(this.listarray[i].Department==='.Net Development Lead'){
-    //     this.netcount++;
-    //   }
-    //   if(this.listarray[i].Department==='Recruiting Expert'){
-    //     this.recount++;
-    //   }
-  
-    //   if(this.listarray[i].Department==='BI Developer'){
-    //     this.bicount++;
-    //   }
-    //   if(this.listarray[i].Department==='Business Analyst'){
-    //     this.bacount++;
-    //   }
-      
-    }
+  }
+  submit(){
+    console.log('sai');
+  }
+  viewMore(){
+   
+    this.more=true;
+  }
+  viewLess(){
+    this.more=false;
+  }
    
   }
 

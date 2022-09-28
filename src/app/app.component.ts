@@ -1,11 +1,8 @@
-import { IfStmt } from '@angular/compiler';
-import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
-import { EmployeeListService } from './Service/employee-list.service';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
+import { Component } from '@angular/core';
+import {  Router } from '@angular/router';
+import { EmployeeListService } from './Service/employee-list.service';
 import { Employee } from './Model/employee';
-import { Observable, of } from 'rxjs';
 import { AlphabetsService } from './Service/alphabets.service';
 import { AddEmployeeComponent } from './Components/add-employee/add-employee.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -29,13 +26,7 @@ export class AppComponent {
   alpha:string;
  
   fillterbyarray=['preferredname','Firstname','LastName','Job','Department','Office']
-  // searchbyArray:any=[];
-  // s:any;
-  // fillterby:any=[];
-  a:string;
-  employelistArray:any=[];
-  // searchvalue:any[];
-  // employelist:EmployeeListComponent[];
+  
   constructor(private employeelistservice:EmployeeListService,private router:Router,private alphabetsservice:AlphabetsService,private  dialog:  MatDialog) {
    
    
@@ -44,7 +35,6 @@ export class AppComponent {
    ngOnInit(){
     this.getalphaArray();
   
-
    }
    openpop(){
     this.dialog.open(AddEmployeeComponent)
@@ -58,83 +48,9 @@ export class AppComponent {
       this.employeelistservice.setSearchText(value);
     }
   
-    this.router.navigate(['employees'])
-   
-    this.list=this.employeelistservice.Allemployees
-    if (this.filterby == "preferredname") {
-      this.filteredemployee=[];
-      for (var i = 0; i < this.list.length; i++) {
-        if(bool && this.list[i].PreferredName.toLowerCase().startsWith(value.toLowerCase())){
-          this.filteredemployee[i]=(this.list[i])
-        }
-       
-        if(bool==false && this.list[i].PreferredName.toLowerCase().includes(value.toLowerCase())){
-          this.filteredemployee[i]=(this.list[i])
-        }
-        
-      }
-    }
-    else if (this.filterby == "Firstname") {
-      this.filteredemployee=[];
-      for (var i = 0; i < this.list.length; i++) {
-        if(bool && this.list[i].FirstName.toLowerCase().startsWith(value.toLowerCase())){
-          this.filteredemployee[i]=(this.list[i])
-        }
-        else if(bool==false && this.list[i].FirstName.toLowerCase().includes(value.toLowerCase())){
-          this.filteredemployee[i]=(this.list[i])
-        }
-        
-      }
-    }
-    else if (this.filterby == "LastName") {
-      this.filteredemployee=[];
-      for (var i = 0; i < this.list.length; i++) {
-        if(bool && this.list[i].LastName.toLowerCase().startsWith(value.toLowerCase())){
-          this.filteredemployee[i]=(this.list[i])
-        }
-        else if(bool==false && this.list[i].LastName.toLowerCase().includes(value.toLowerCase())){
-          this.filteredemployee[i]=(this.list[i])
-        }
-      }
-    }
-    else if (this.filterby == "Job") {
-      this.filteredemployee=[];
-      for (var i = 0; i < this.list.length; i++) {
-        if(bool && this.list[i].Job.toLowerCase().startsWith(value.toLowerCase())){
-          this.filteredemployee[i]=(this.list[i])
-        }
-        else if(bool==false && this.list[i].Job.toLowerCase().includes(value.toLowerCase())){
-          this.filteredemployee[i]=(this.list[i])
-        }
-      }
-    }
-    else if (this.filterby == "Office") {
-      this.filteredemployee=[];
-      for (var i = 0; i < this.list.length; i++) {
-        if(bool && this.list[i].office.toLowerCase().startsWith(value.toLowerCase())){
-          this.filteredemployee[i]=(this.list[i])
-        }
-        else if(bool==false && this.list[i].office.toLowerCase().includes(value.toLowerCase())){
-          this.filteredemployee[i]=(this.list[i])
-        }
-      }
-    }
-    
-    else if (this.filterby == "Department") {
-      this.filteredemployee=[];
-      for (var i = 0; i < this.list.length; i++) {
-        if(bool && this.list[i].Department.toLowerCase().startsWith(value.toLowerCase())){
-          this.filteredemployee[i]=(this.list[i])
-        }
-        else if(bool==false && this.list[i].Department.toLowerCase().includes(value.toLowerCase())){
-          this.filteredemployee[i]=(this.list[i])
-        }
-      }
-    }
+    this.router.navigate([''])
   }
 
-  
- 
   onSelected(value:string) {
     this.employeelistservice.setFilteredBy(value);  
 	}
@@ -146,34 +62,4 @@ export class AppComponent {
       index++;
     }
   }
-  // geti(){
-  //   return this.filterby;
-  // }
-  // f(){
-
-  // }
-
- 
-
-  // searchtexts(value:string){
-  //   this.searchtext=value;
-  //  console.log(this.searchtext)
-  //    return this.searchtext
-  // }
-  // assignValue() {
-  //   const SubscribeObservable = new Observable((observer) => {
-  //     observer.next(this.searchtext);
-  //   });
-  //   return SubscribeObservable;
-  // }
-
-  
-  // displayList(){
-  //   this.employeelistservice.filterby(this.searchtext).subscribe(res=>{
-  //     this.employelistArray=res
-  //     console.log(res)
-  //   });
-  // }
 }
-
-  
