@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Employee } from 'src/app/Model/employee';
 import { EmployeeListService } from 'src/app/Service/employee-list.service';
@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class AddEmployeeComponent implements OnInit {
   @ViewChild('closebutton') closebutton: { nativeElement: { click: () => void; }; }
+  reactiveform:FormGroup
   FirstName:string;
   LastName:string;
   PreferredName:string;
@@ -29,7 +30,19 @@ export class AddEmployeeComponent implements OnInit {
   constructor(private employeelistservice:EmployeeListService,private router:Router,private dialog:MatDialog ) { }
   ngOnInit(): void {
     
+    this.reactiveform = new FormGroup({
 
+      firstname:new FormControl(null),
+      lastname:new FormControl(null),
+      preferredname:new FormControl(null),
+      job:new FormControl(null),
+      office:new FormControl(null),
+      department:new FormControl(null),
+      phonenumber:new FormControl(null),
+      skypeid:new FormControl(null),
+      email:new FormControl(null),
+     
+    })
   }
   addEmployee(){
    
