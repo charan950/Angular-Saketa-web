@@ -1,9 +1,3 @@
-.container{
-  width: 60%;
-}
-.mat-dialog-container{
-  width: 60%;
-}
-.ng-valid[required], .ng-valid.required  {
-  border:  solid #42A948; /* green */
+form{
+    overflow: auto;
 }

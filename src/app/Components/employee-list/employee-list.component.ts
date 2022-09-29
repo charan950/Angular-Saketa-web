@@ -60,7 +60,7 @@ export class EmployeeListComponent implements OnInit {
           })
         }
       }
-      if(res=='Firstname'){
+      else if(res=='Firstname'){
       
         for(let emp of this.filterlist){
           this.employeelistservice.searchText.subscribe(text=>{

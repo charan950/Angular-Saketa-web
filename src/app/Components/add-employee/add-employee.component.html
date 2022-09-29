@@ -1,74 +1,89 @@
-<!-- <div id="add-form" class="modal">
-  <form class="modal-content animate">
-    <div class="imgcontainer">
-      <span onclick=closeAddForm() class="close" title="Close Modal">&times;</span>
-      <img src="./Images/Image1.jfif" alt="Avatar" class="avatar">
-    </div> -->
-   
-  <form >
-   
+
+  <form class="form" [formGroup]="registerForm" (ngSubmit)=" addEmployee()">
     <div class="form-group">
-      <label >FirstName</label>
-      <input type="text" class="form-control" id="name"
-             
-             [(ngModel)]="FirstName" name="fname" required >
+        <label>FirstName</label>
+        <input type="text" class="form-control" formControlName="firstname"[(ngModel)]="firstname">
+        <span class="text-danger"
+            *ngIf="(registerFormControl.firstname.touched||submitted) && registerFormControl.firstname.errors?.required">
+            First Name is required
+        </span>
     </div>
-    <div class="form-group">
-      <label for="alterEgo">LastName</label>
-      <input type="text"  class="form-control" 
-             [(ngModel)]="LastName" name="LastName" #lname (keyup)="autoPopulate(pname.value)" >
-    </div>
-    <div class="form-group">
-      <label >PrefferedName</label>
-      <input type="text" class="form-control" 
-             required
-             [ngModel]="LastName" name="LastName" #pname (keyup)="autoPopulate(pname.value)" >
-    </div>
-    <div class="form-group">
-      <label >Email</label>
-      <input type="text" class="form-control" 
-             required
-             [(ngModel)]="Email" name="email" >
-    </div>
-    <div class="form-group">
-      <label >Job</label>
-      <select class="border-1 form-control w-100" #job (click)="getJob(job.value)">
-        <option value="" [selected]=true [disabled]="true">Select Job Title</option>
-        <option *ngFor="let element of jobsList" >{{element}}</option>
-      </select> 
-    </div>
-    <div class="form-group">
-      <label >Office</label>
-      <select class="border-1  form-control " #office (click)="getOffice(office.value)">
-        <option value="" [selected]=true [disabled]="true">Select Office</option>
-        <option *ngFor="let element of officeList" >{{element}}</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label >Department</label>
-      <select class="border-1 form-control" #department (click)="getDepartment(department.value)" >
-        <option value="" [selected]=true [disabled]="true">Select Department</option>
-        <option *ngFor="let element of departmentList" >{{element}}</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label >Phone Number</label>
-      <input type="text" class="form-control" 
-             required
-             [(ngModel)]="PhoneNumber" name="PhoneNumber" >
-    </div>
-    <div class="form-group">
-      <label >SkypeId</label>
-      <input type="text" class="form-control" 
-             required
-             [(ngModel)]="SkypeId" name="SkypeId" >
-    </div>
-    <!-- <div class="form-group">
-      <label >SkypeId</label>
-      <input type="text" class="form-control" id="name"
-             required
-             [(ngModel)]="SkypeId" name="name" >
-    </div> -->
-    <button type="button" (click)="addEmployee()">Add</button>
-    </form>
-    
+     <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" formControlName="lastname"  [(ngModel)]="LastName"  >
+      <span class="text-danger"
+          *ngIf="(registerFormControl.lastname.touched||submitted) && registerFormControl.lastname.errors?.required">
+          Last Name is required
+      </span> 
+  </div>
+  <div class="form-group">
+    <label>Preferred Name</label>
+    <input type="text" class="form-control" formControlName="preferredname" [ngModel]="LastName" >
+    <span class="text-danger"
+        *ngIf="(registerFormControl.preferredname.touched||submitted) && registerFormControl.preferredname.errors?.required">
+        Preferred Name is required
+    </span>
+  </div>
+  <div class="form-group">
+    <label >Department</label>
+    <select class="border-1 form-control" formControlName="department">
+      <option value="" [selected]=true [disabled]="true">Select Department</option>
+      <option *ngFor="let element of departmentList" >{{element}}</option>
+    </select>
+    <span class="text-danger"
+    *ngIf="(registerFormControl.department.touched||submitted) && registerFormControl.department.errors?.required">
+    Preferred Name is required
+  </span>
+  </div>
+<div class="form-group">
+  <label >Job</label>
+  <select class="border-1 form-control w-100" formControlName="job">
+    <option value="" [selected]=true [disabled]="true">Select Job Title</option>
+    <option *ngFor="let element of jobsList" >{{element}}</option>
+  </select> 
+  <span class="text-danger"
+  *ngIf="(registerFormControl.job.touched||submitted) && registerFormControl.job.errors?.required">
+  Job Title is required
+</span>
+</div>
+<div class="form-group">
+  <label >Office</label>
+  <select class="border-1  form-control " formControlName="office">
+    <option value="" [selected]=true [disabled]="true">Select Office</option>
+    <option *ngFor="let element of officeList" >{{element}}</option>
+  </select>
+  <span class="text-danger"
+  *ngIf="(registerFormControl.office.touched||submitted) && registerFormControl.office.errors?.required">
+  Job Title is required
+  </span>
+</div>
+<div class="form-group">
+  <label>Email</label>
+  <input type="email" class="form-control" formControlName="email" ngModel [email]="true">
+  <div *ngIf="registerFormControl.email.touched && registerFormControl.email.invalid" class="text-danger">  
+    <div *ngIf="registerFormControl.email.errors?.required">email is required.</div>  
+    <div *ngIf="registerFormControl.email.errors?.pattern">Please enter a valid mail address.</div>  
+</div> 
+</div>
+<div class="form-group">
+  <label>Phone Number</label>
+  <input type="text" class="form-control" formControlName="phonenumber">
+  <div *ngIf="registerFormControl.phonenumber.touched && registerFormControl.phonenumber.invalid" class="text-danger">  
+    <div *ngIf="registerFormControl.phonenumber.errors?.required">Mobile Number is required.</div>  
+    <div *ngIf="registerFormControl.phonenumber.errors?.pattern">Please, Enter 10 digit Mobile Number.</div>  
+</div>  
+
+</div>
+<div class="form-group">
+  <label>SkypeId</label>
+  <input type="text" class="form-control" formControlName="skypeid">
+  <span class="text-danger"
+      *ngIf="(registerFormControl.skypeid.touched||submitted) && registerFormControl.skypeid.errors?.required">
+      SkypeId is required
+  </span>
+</div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">Add Employee</button>
+</div>
+
+</form>

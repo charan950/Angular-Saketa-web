@@ -5,6 +5,7 @@ import { empty } from 'rxjs';
 import { Employee } from 'src/app/Model/employee';
 import { EmployeeListService } from 'src/app/Service/employee-list.service';
 import { MatDialog } from '@angular/material/dialog';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
@@ -19,11 +20,12 @@ export class EmployeeDetailsComponent implements OnInit {
  preferredname:string;
  job:string;
  office:string;
- s='sai';
  department:string;
  phonenumber:Number;
  email:string;
  skypeid:string;
+ registerForm: FormGroup;
+ submitted = false;
  jobsList=['SharePoint Practice Head','.Net Development Lead','Recruiting Expert','BI Developer','Business Analyst',
  'Operations Manger','Product Manger','Software Engineer']
    officeList=['Seatle','India'];
