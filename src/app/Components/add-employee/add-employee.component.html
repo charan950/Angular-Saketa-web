@@ -1,5 +1,5 @@
 
-  <form class="form" [formGroup]="registerForm" (ngSubmit)=" addEmployee()">
+  <form class="form" [formGroup]="addform" (ngSubmit)=" addEmployee()">
     <div class="form-group">
         <label>FirstName</label>
         <input type="text" class="form-control" formControlName="firstname"[(ngModel)]="firstname">

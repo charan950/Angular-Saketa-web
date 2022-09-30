@@ -16,7 +16,7 @@ export class AddEmployeeComponent implements OnInit {
   
  
   employee:Employee;
-  registerForm: FormGroup;
+  addform: FormGroup;
   submitted = false;
   jobsList=['SharePoint Practice Head','.Net Development Lead','Recruiting Expert','BI Developer','Business Analyst',
   'Operations Manger','Product Manger','Software Engineer']
@@ -25,7 +25,7 @@ export class AddEmployeeComponent implements OnInit {
   constructor(private employeelistservice:EmployeeListService,private router:Router,private dialog:MatDialog,private formbulider:FormBuilder ) { }
   ngOnInit(): void {
     
-    this.registerForm = new FormGroup({
+    this.addform = new FormGroup({
       'firstname' : new FormControl('name', Validators.required),
       'lastname' : new FormControl('', Validators.required),
       'preferredname' : new FormControl(null, Validators.required),
@@ -40,33 +40,33 @@ export class AddEmployeeComponent implements OnInit {
   
   }
   get registerFormControl() {
-    return this.registerForm.controls;
+    return this.addform.controls;
   }
 
   onSubmit() {
   
-    if (this.registerForm.valid ||this.submitted) {
+    if (this.addform.valid ||this.submitted) {
       alert('Form Submitted succesfully!!!\n Check the values in browser console.');
-      console.table((this.registerForm.controls['firstname'].value));
+      console.table((this.addform.controls['firstname'].value));
     }
   }
        
    addEmployee(){
     this.submitted = true;
-    console.log(this.registerForm.controls['firstname'].value)
-    console.log(this.registerForm.controls['email'].value)
-    if (this.registerForm.valid||this.submitted) {
+    console.log(this.addform.controls['firstname'].value)
+    console.log(this.addform.controls['email'].value)
+    if (this.addform.valid||this.submitted) {
       alert('Employee Details Added succesfully!!!');
     this.employee=new Employee(
-    this.registerForm.controls['firstname'].value,
-      this.registerForm.controls['lastname'].value,
-       this.registerForm.controls['preferredname'].value,
-       this.registerForm.controls['job'].value,
-       this.registerForm.controls['office'].value,
-       this.registerForm.controls['email'].value,
-       this.registerForm.controls['department'].value,
-       this.registerForm.controls['phonenumber'].value,
-        this.registerForm.controls['skypeid'].value)
+    this.addform.controls['firstname'].value,
+      this.addform.controls['lastname'].value,
+       this.addform.controls['preferredname'].value,
+       this.addform.controls['job'].value,
+       this.addform.controls['office'].value,
+       this.addform.controls['email'].value,
+       this.addform.controls['department'].value,
+       this.addform.controls['phonenumber'].value,
+        this.addform.controls['skypeid'].value)
        
       console.log(this.employee)
       this.employeelistservice.addEmployee(this.employee);
