@@ -22,7 +22,7 @@ export class DepartmentDetailsComponent implements OnInit {
     this.route.paramMap.subscribe((params : ParamMap)=> {  
     this.dep=params.get('id'); 
     let index=0;
-    this.EmployeelistArray=this.employeelist.Allemployees;
+    this.EmployeelistArray=this.employeelist.allEmployees;
     this.filterdListArray=[];
     for(let i=0;i<this.EmployeelistArray.length;i++){
       if(this.EmployeelistArray[i].Department==this.dep){

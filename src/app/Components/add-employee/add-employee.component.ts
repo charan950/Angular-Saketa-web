@@ -5,6 +5,8 @@ import { Employee } from 'src/app/Model/employee';
 import { EmployeeListService } from 'src/app/Service/employee-list.service';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { JobsList } from 'src/app/Model/jobs-list';
+import { EmployeeDepartment } from 'src/app/Model/employee-department';
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
@@ -14,10 +16,15 @@ export class AddEmployeeComponent implements OnInit {
   [x: string]: any;
   @ViewChild('closebutton') closebutton: { nativeElement: { click: () => void; }; }
   
- 
+ employeeId:number=1;
   employee:Employee;
+ 
   addform: FormGroup;
+  Job:JobsList;
+  department:EmployeeDepartment
   submitted = false;
+  rawStoredEmployeeList: string;
+  storedEmployeeList:Employee[]=[]
   jobsList=['SharePoint Practice Head','.Net Development Lead','Recruiting Expert','BI Developer','Business Analyst',
   'Operations Manger','Product Manger','Software Engineer']
   officeList=['Seatle','India'];
@@ -26,38 +33,28 @@ export class AddEmployeeComponent implements OnInit {
   ngOnInit(): void {
     
     this.addform = new FormGroup({
-      'firstname' : new FormControl('name', Validators.required),
-      'lastname' : new FormControl('', Validators.required),
-      'preferredname' : new FormControl(null, Validators.required),
-      'job' : new FormControl(null, Validators.required),
-      'email' : new FormControl(null, [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
-      'office' : new FormControl(null, Validators.required),
-      'department' : new FormControl(null, Validators.required),
-      'phonenumber' : new FormControl(null, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
-      'skypeid' : new FormControl(null, Validators.required),
+      firstname : new FormControl(null, Validators.required),
+      lastname : new FormControl(null, Validators.required),
+      preferredname : new FormControl(null, Validators.required),
+      job : new FormControl(null, Validators.required),
+      email : new FormControl(null, [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]),
+      office : new FormControl(null, Validators.required),
+      department : new FormControl(null, Validators.required),
+      phonenumber : new FormControl(null, [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]),
+      skypeid : new FormControl(null, Validators.required),
 
     });
   
   }
-  get registerFormControl() {
-    return this.addform.controls;
-  }
-
-  onSubmit() {
-  
-    if (this.addform.valid ||this.submitted) {
-      alert('Form Submitted succesfully!!!\n Check the values in browser console.');
-      console.table((this.addform.controls['firstname'].value));
-    }
-  }
        
    addEmployee(){
+    this.employeeId=this.employeelistservice.allEmployees.length+1;
     this.submitted = true;
-    console.log(this.addform.controls['firstname'].value)
-    console.log(this.addform.controls['email'].value)
-    if (this.addform.valid||this.submitted) {
+   
+    if (this.addform.valid) {
       alert('Employee Details Added succesfully!!!');
     this.employee=new Employee(
+      this.employeeId,
     this.addform.controls['firstname'].value,
       this.addform.controls['lastname'].value,
        this.addform.controls['preferredname'].value,
@@ -67,53 +64,25 @@ export class AddEmployeeComponent implements OnInit {
        this.addform.controls['department'].value,
        this.addform.controls['phonenumber'].value,
         this.addform.controls['skypeid'].value)
-       
-      console.log(this.employee)
+      //  this.Job=new JobsList(this.employeeId, this.addform.controls['job'].value)
+      // localStorage.setItem('employesJobTable',JSON.stringify(this.Job))
+      // this.department=new EmployeeDepartment(this.employeeId, this.addform.controls['department'].value)
+      // localStorage.setItem('employesDepartmentTable',JSON.stringify(this.department))
       this.employeelistservice.addEmployee(this.employee);
+      this.dialog.closeAll()
       this.router.navigate([''])
-       this.closeDialog();
+      
     }
   
   }
   
   closeDialog() {
-    this.dialog.closeAll()
-  }
-  
-
-  
-  // get name() { return this.registerForm.get('firstname'); }
-  // addEmployee(){
+    if(this.addform.invalid && this.addform.controls.firstname.touched===true){
+      this.dialog.closeAll()
+    }
    
-  
-  //   this.employee=new Employee(this.FirstName,this.LastName,this.PreferredName,this.Job,this.Office,this.Email,this.Department,this.PhoneNumber,this.SkypeId)
-    
-  //     this.employeelistservice.addEmployee(this.employee);
-  //     this.router.navigate([''])
-  //     this.closeDialog() 
-    
-  
-  // }
-  // getDepartment(department:string){
-  //   this.Department=department;
-  // }
-  // getJob(job:string){
-  //   this.Job=job;
-  // }
-  // getOffice(office:string){
-  //   console.log(office)
-  //   this.Office=office;
-  // }
-  // // autoPopulated(PreferredName:string){
-  // //   this.PreferredName=PreferredName
-  // // }
-  // autoPopulate(p:string){
-  //   this.PreferredName=p;
-  //   console.log(this.PreferredName)
-  // }
-  // closeDialog() {
-  //   this.dialog.closeAll()
-  // }
+  }
+
 }
 
 

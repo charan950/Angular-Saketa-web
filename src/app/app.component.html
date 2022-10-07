@@ -11,22 +11,7 @@
 <body>
 <div class="container-fluid">
    <section>
-    <div class=" border-bottom ">
-      <div class="row ms-4 me-4">
-        <div class="d-flex col p-3 pt-5">
-          <div><img class="brand" src=".\assets\Images\brand.png"></div>
-          <div>
-            <span class="display-6 pe-5 me-5 text-info">Employee Directory</span><br>
-            <div class="fs-5">The Ultimate People Directory Experience</div>
-          </div>
-          <div class="col float-end text-end ms-5 ps-5 align-bottom display-6">
-            <span class="text-info ">Welcome,</span>
-            <span>Andrew Philips</span>
-            <img class="profile-pic" src=".\assets\Images\Image1.jfif">
-          </div>
-        </div>
-    </div>   
-    </div>
+    <app-header></app-header>
    </section>
     <div class="row mt-5">
        <div class="col-2 ms-5 sidebar ">
@@ -36,13 +21,9 @@
        </div>
         <div class="col me-5">
           <div class="row">
-            <div class="col p-0">
-              <div id="alpha" >
-                <div *ngFor="let alpha of alphaArray"  >
-                  <button class ="grid" (click)="onKeyUp(alpha,true)">{{alpha}}</button>
-                </div>
-              </div>
-            </div>
+            <section>
+             <app-alphabets></app-alphabets>
+            </section>
           </div>
             <div class="row">
               <div class="col p-0">
@@ -50,7 +31,7 @@
                  
                   <label class="fs-5 m-3 ms-0">Search</label><i class="fa fa-search"></i>
                   <input type="text" name="search"   #searchtext (keyup)="onKeyUp(searchtext.value,false)">
-                  <button type="button" class="clear-button ms-3 p-2 ps-4 pe-4 " >clear</button>
+                  <button type="button" class="clear-button ms-3 p-2 ps-4 pe-4 " (click)="clearButton()" >clear</button>
                   <span class="fs-5 m-3 ms-5 ps-4">Filter By</span>
                   <select class="border-1" #teams (change)="onSelected(teams.value)" >
                     <option value="" [selected]=true [disabled]="true">FilterBy</option>
@@ -70,30 +51,10 @@
             <div class="row ">
               <div class="col p-0 ">
                 <div class="list-border overflow-auto">
-                  <!-- <app-search-filter [filteredemployee]="filteredemployee"></app-search-filter> -->
+                
                     <router-outlet></router-outlet>
                 
-                  <!-- <div id="empList">
-                    <-- <div *ngFor="let emp of employelistArray | filter:searchtext" >
-                      <div class="list" >
-                          <div class="row">
-                              <div class="col-4 ">
-                                <img class="profile p-2 " src=".\assets\Images\Image1.jfif">
-                              </div>
-                          <div class="col p-0">
-                              <div>{{emp.FirstName}} {{emp.LastName}}</div>
-                              <div>{{emp.Job}}</div>
-                              <div>{{emp.Department}}</div>
-                              <i><img class="icon" src="./assets/Images/call-grey.png"></i>
-                              <i><img class="icon" src="./assets/Images/popup.png"></i>
-                              <i><img class="icon" src="./assets/Images/message.png"></i>
-                              <i><img class="icon" src="./assets/Images/heart.png"></i>
-                              <i><img class="icon" src="./assets/Images/star.png"></i>
-                          </div>
-                        </div>
-                      </div>
-                      </div>    --
-                  </div> -->
+                  
                 </div>
               </div> 
             </div>

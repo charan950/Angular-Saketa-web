@@ -19,49 +19,50 @@ constructor(private employeelistservice:EmployeeListService) {
 }
 
   ngOnInit(): void {
+    this.employeelistservice.getDetails()
     this.more=true;
    
-    this.employeelistservice.itcount.subscribe(res=>{
+    this.employeelistservice.itCount.subscribe(res=>{
       this.itcount=res;
-      console.log(this.itcount)
+     
     })
-    this.employeelistservice.hrcount.subscribe(res=>{
+    this.employeelistservice.hrCount.subscribe(res=>{
       this.hrcount=res;
     })
-    this.employeelistservice.mdcount.subscribe(res=>{
+    this.employeelistservice.mdCount.subscribe(res=>{
       this.mdcount=res;
     })
-    this.employeelistservice.salescount.subscribe(res=>{
+    this.employeelistservice.salesCount.subscribe(res=>{
       this.salescount=res;
     })
-    this.employeelistservice.seatlecount.subscribe(res=>{
+    this.employeelistservice.seatleCount.subscribe(res=>{
       this.seatlecount=res;
     })
-    this.employeelistservice.indiacount.subscribe(res=>{
+    this.employeelistservice.indiaCount.subscribe(res=>{
       this.indiacount=res;
     })
-    this.employeelistservice.sharepointcount.subscribe(res=>{
+    this.employeelistservice.sharepointCount.subscribe(res=>{
       this.sharepointcount=res;
     })
-    this.employeelistservice.netcount.subscribe(res=>{
+    this.employeelistservice.netCount.subscribe(res=>{
       this.netcount=res;
     })
-    this.employeelistservice.recount.subscribe(res=>{
+    this.employeelistservice.reCount.subscribe(res=>{
       this.recount=res;
     })
-    this.employeelistservice.bicount.subscribe(res=>{
+    this.employeelistservice.biCount.subscribe(res=>{
       this.bicount=res;
     })
-    this.employeelistservice.bacount.subscribe(res=>{
+    this.employeelistservice.baCount.subscribe(res=>{
       this.bacount=res;
     })
-    this.employeelistservice.omcount.subscribe(res=>{
+    this.employeelistservice.omCount.subscribe(res=>{
       this.omcount=res;
     })
-    this.employeelistservice.pmcount.subscribe(res=>{
+    this.employeelistservice.pmCount.subscribe(res=>{
       this.pmcount=res;
     })
-    this.employeelistservice.secount.subscribe(res=>{
+    this.employeelistservice.seCount.subscribe(res=>{
       this.secount=res;
     })
    

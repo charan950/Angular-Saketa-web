@@ -6,14 +6,17 @@ import { Employee } from 'src/app/Model/employee';
 import { EmployeeListService } from 'src/app/Service/employee-list.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { JobsList } from 'src/app/Model/jobs-list';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
   styleUrls: ['./employee-details.component.css']
 })
 export class EmployeeDetailsComponent implements OnInit {
-  public employeedetailsarray:any=[];
+
+ public employeedetailsarray:any=[];
  employee:Employee;
+ jobList:JobsList
  emp:Employee;
  firstname:string
  lastname:string;
@@ -26,19 +29,21 @@ export class EmployeeDetailsComponent implements OnInit {
  skypeid:string;
  registerForm: FormGroup;
  submitted = false;
- jobsList=['SharePoint Practice Head','.Net Development Lead','Recruiting Expert','BI Developer','Business Analyst',
+
+jobsList=['SharePoint Practice Head','.Net Development Lead','Recruiting Expert','BI Developer','Business Analyst',
  'Operations Manger','Product Manger','Software Engineer']
-   officeList=['Seatle','India'];
-  departmentList=['IT Department','Human Resources','MD Department','Sales']
-  array: any=[];
+officeList=['Seatle','India'];
+departmentList=['IT Department','Human Resources','MD Department','Sales']
+  
   constructor(private route:Router ,private employeelistservice:EmployeeListService,private router:Router,private dialog:MatDialog) { }
 
   ngOnInit(): void {
+
     this.updatedetails()
-    // this.firstname=this.emp.FirstName
+
   }
   updatedetails(){
-
+   
     this.employee=this.employeelistservice.employeeDetail
     this.firstname=this.employee.FirstName;
     this.lastname=this.employee.LastName;
@@ -49,9 +54,11 @@ export class EmployeeDetailsComponent implements OnInit {
     this.phonenumber=this.employee.PhoneNumber
     this.office=this.employee.office;
     this.preferredname=this.employee.PreferredName
+
   }
+
   onUpdateClick(){
-    console.log(this.employeelistservice.Allemployees);
+   
     this.employee.FirstName=this.firstname;
     this.employee.LastName=this.lastname;
     this.employee.PreferredName=this.preferredname;
@@ -62,20 +69,28 @@ export class EmployeeDetailsComponent implements OnInit {
     this.employee.PhoneNumber=this.phonenumber;
     this.employee.Email=this.email
     this.closeDialog()
+    console.log(this.employeelistservice.allEmployees)
+    console.log(this.employeelistservice.jobList)
+
+    localStorage.setItem('employeelist',JSON.stringify(this.employeelistservice.allEmployees))
+    localStorage.setItem('employeesJobTable',JSON.stringify( this.employeelistservice.jobList))
+    localStorage.setItem('employeesDepartmentTable',JSON.stringify( this.employeelistservice.departmentList))
     this.route.navigate(['']);
-  console.log(this.employeelistservice.getEmployeeList());
+ 
   }
+
   getJob(job:string){
     this.job=job;
   }
+
   getDepartment(department:string){
     this.department=department;
   }
  
   getOffice(office:string){
-    console.log(office)
     this.office=office;
   }
+
   closeDialog() {
     this.dialog.closeAll()
   }

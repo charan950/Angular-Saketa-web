@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AlphabetsService } from 'src/app/Service/alphabets.service';
+import { EmployeeListService } from 'src/app/Service/employee-list.service';
 
 @Component({
   selector: 'app-alphabets',
@@ -9,14 +10,30 @@ import { AlphabetsService } from 'src/app/Service/alphabets.service';
 })
 export class AlphabetsComponent implements OnInit {
   alphaArray:any=[];
-  constructor(private alphabets:AlphabetsService) { }
+  constructor(private alphabets:AlphabetsService,private employeelistservice:EmployeeListService) { }
  
   ngOnInit(): void {
-    this.alphaArray=this.alphabets.getAlphabets();
-  }
-  getAlpha(alpha:any) {
-      console.log(alpha);
-  }
   
+    this.getalphaArray();
+  }
+ 
+  getalphaArray(){
+    let index=0;
+    for (let i = 65; i < 91; i++) {
+      var al = String.fromCharCode(i);
+      this.alphaArray[index]=al;
+      index++;
+    }
+  }
+  onKeyUp(value:string,bool:boolean){
+    if(bool){
+      this.employeelistservice.setAlpha(value);
+    }
+    else{
+      this.employeelistservice.setSearchText(value);
+    }
+  
+   
+  }
 
 }

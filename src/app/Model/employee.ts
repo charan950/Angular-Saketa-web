@@ -1,4 +1,5 @@
 export class Employee {
+    employeeId:number
     FirstName:string
     LastName:string
     PreferredName:string
@@ -8,7 +9,8 @@ export class Employee {
     Department:string
     PhoneNumber:Number
     SkypeId:string
-    constructor( FirstName:string,LastName:string,PreferredName:string,Job:string,office:string,Email:string,Department:string,PhoneNumber:Number,SkypeId:string){
+    constructor(employeeId:number,FirstName:string,LastName:string,PreferredName:string,Job:string,office:string,Email:string,Department:string,PhoneNumber:Number,SkypeId:string){
+        this.employeeId=employeeId
         this.FirstName=FirstName;
         this.LastName=LastName;
         this.PreferredName=PreferredName;

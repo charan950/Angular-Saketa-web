@@ -4,116 +4,145 @@ import { Router } from '@angular/router';
 // import { Observable, Subject } from 'rxjs';
 import { Employee } from '../Model/employee';
 import { from, Subject, multicast, of, BehaviorSubject, never, Observable, retry } from 'rxjs';
+import { JobsList } from '../Model/jobs-list';
+import { EmployeeDepartment } from '../Model/employee-department';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeListService {
  
-  itcount=new Subject<number>()
-  hrcount=new Subject<number>()
-  mdcount=new Subject<number>()
-  salescount=new Subject<number>()
-  seatlecount=new Subject<number>()
-  indiacount=new Subject<number>()
-  sharepointcount=new Subject<number>()
-  netcount=new Subject<number>()
-  leadcount=new Subject<number>()
-  bicount=new Subject<number>()
-  bacount=new Subject<number>()
-  recount=new Subject<number>()
-  omcount=new Subject<number>();
-  secount=new Subject<number>();
-  pmcount=new Subject<number>()
-  employeeDetailsArray:Employee[]=[]
+  itCount=new Subject<number>()
+  hrCount=new Subject<number>()
+  mdCount=new Subject<number>()
+  salesCount=new Subject<number>()
+  seatleCount=new Subject<number>()
+  indiaCount=new Subject<number>()
+  sharepointCount=new Subject<number>()
+  netCount=new Subject<number>()
+  leadCount=new Subject<number>()
+  biCount=new Subject<number>()
+  baCount=new Subject<number>()
+  reCount=new Subject<number>()
+  omCount=new Subject<number>();
+  seCount=new Subject<number>();
+  pmCount=new Subject<number>()
   searchText=new Subject<string>();
   employeeDetail:Employee;
   filterby=new Subject<string>();
   alphabet=new Subject<string>();
-  Allemployees:Employee[]=[]
- 
+  allEmployees:Employee[]=[]
+  jobList:JobsList[]=[]
+  departmentList:EmployeeDepartment[]=[];
+  rawStoredEmployeeList=new Subject<Employee[]>();
+  rawStoredJobList=new Subject<JobsList[]>();
+  constructor(){}
 
-  constructor(){
-     
-  }
- 
- 
-  
-  getEmployeeList() {
-    let itcount=0,hrcount=0,mdcount=0, salescount=0, seatlecount=0, indiacount=0, sharepointcount=0, 
-    netcount=0, bicount=0, bacount=0, recount=0,omcount=0,pmcount=0,secount=0;
-    this.itcount.next(itcount);
-    this.hrcount.next(hrcount);
-    this.mdcount.next(mdcount);
-    this.salescount.next(salescount);
-    this.seatlecount.next(indiacount);
-    this.sharepointcount.next(sharepointcount);
-    this.netcount.next(netcount);
-    this.bicount.next(bicount);
-    this.bacount.next(bacount);
-    this.recount.next(recount);
-    this.omcount.next(omcount);
-    this.pmcount.next(pmcount);
-    this.secount.next(secount);
-    for(let emp of this.Allemployees){
+  populateCount() {
+   
+    let itCount=0,hrCount=0,mdCount=0, salesCount=0, seatleCount=0, indiaCount=0, sharepointCount=0, 
+    netCount=0, biCount=0, baCount=0, reCount=0,omCount=0,pmCount=0,seCount=0;
+    this.itCount.next(itCount);
+    this.hrCount.next(hrCount);
+    this.mdCount.next(mdCount);
+    this.salesCount.next(salesCount);
+    this.seatleCount.next(indiaCount);
+    this.sharepointCount.next(sharepointCount);
+    this.netCount.next(netCount);
+    this.biCount.next(biCount);
+    this.baCount.next(baCount);
+    this.reCount.next(reCount);
+    this.omCount.next(omCount);
+    this.pmCount.next(pmCount);
+    this.seCount.next(seCount);
+    
+    for(let emp of this.allEmployees){
       
       if(emp.Department==='IT Department'){
-        this.itcount.next(++itcount);
+        this.itCount.next(++itCount);
        
       }
       if(emp.Department=='Human Resources'){
-        this.hrcount.next(++hrcount);
+        this.hrCount.next(++hrCount);
       }
       if(emp.Department=='MD Department'){
-        this.mdcount.next(++mdcount);
+        this.mdCount.next(++mdCount);
       }
       if(emp.Department=='Sales'){
-        this.salescount.next(++salescount);
+        this.salesCount.next(++salesCount);
       }
       if(emp.Job=='SharePoint Practice Head'){
-        this.sharepointcount.next(++sharepointcount);
+        this.sharepointCount.next(++sharepointCount);
       }
      
       if(emp.office=='Seatle'){
-        console.log('se')
-        this.seatlecount.next(++seatlecount);
+      
+        this.seatleCount.next(++seatleCount);
       }
       if(emp.office=='India'){
-        this.indiacount.next(++indiacount);
+        this.indiaCount.next(++indiaCount);
       }
       if(emp.Job=='.Net Development Lead'){
-        this.netcount.next(++netcount);
+        this.netCount.next(++netCount);
       }
       if(emp.Job=='Recruiting Expert'){
-        this.recount.next(++recount);
+        this.reCount.next(++reCount);
       }
       if(emp.Job=='BI Developer'){
-        this.bicount.next(++bicount);
+        this.biCount.next(++biCount);
       }
       if(emp.Job=='Business Analyst'){
-        this.bacount.next(++bacount);
+        this.baCount.next(++baCount);
       }
       if(emp.Job=='Operations Manger'){
-        this.omcount.next(++omcount)
+        this.omCount.next(++omCount)
       }
       if(emp.Job=='Software Engineer'){
-        this.secount.next(++secount)
+        this.seCount.next(++seCount)
       }
       if(emp.Job=='Product Manger'){
-        this.pmcount.next(++pmcount)
+        this.pmCount.next(++pmCount)
       }
     }
-    return this.Allemployees;
-  }
-  addEmployee(employee:Employee){
   
-    this.Allemployees.push(employee)
-    this.getEmployeeList();
+  
   }
  
-  employeeDetails(employee:Employee){
-  this.employeeDetail=employee;
- 
+  addEmployee(employee:Employee){
+   this.rawStoredEmployeeList.subscribe(res=>{
+     this.allEmployees=res
+   })
+   this.rawStoredJobList.subscribe(res=>{
+     this.jobList=res;
+   })
+   if(this.allEmployees== null){
+     this.allEmployees=[employee]
+     this.jobList=[{employeeId:employee.employeeId,jobTitle:employee.Job}]
+     this.departmentList=[{employeeId:employee.employeeId,employeeDepartment:employee.Department}]
+    
+   }else{
+     this.allEmployees.push(employee)
+     this.jobList.push({employeeId:employee.employeeId,jobTitle:employee.Job})
+     this.departmentList.push({employeeId:employee.employeeId,employeeDepartment:employee.Department})
+   }
+   
+     localStorage.setItem('employeelist',JSON.stringify(this.allEmployees))
+     localStorage.setItem('employeesJobTable',JSON.stringify(this.jobList))
+     localStorage.setItem('employeesDepartmentTable',JSON.stringify(this.departmentList))
+     this.rawStoredEmployeeList.next(JSON.parse(localStorage.getItem('employeelist')))
+     this.rawStoredJobList.next(JSON.parse(localStorage.getItem('employeesJobTable')))
+     this.populateCount();
+  }
+  
+
+  updateEmployeeDetails(employee:Employee,id:number){
+    
+  this.allEmployees[id-1]=employee;
+  console.log(this.allEmployees)
+  this.employeeDetail=employee
+  console.log(this.jobList)
+  this.jobList[id-1]=({employeeId:employee.employeeId,jobTitle: this.allEmployees[id-1].Job})
+  this.departmentList[id-1]=({employeeId:employee.employeeId,employeeDepartment:employee.Department})
   }
   setSearchText(value:string){
   
@@ -130,7 +159,11 @@ export class EmployeeListService {
     this.alphabet.next(value);
     
   }
- 
+ getDetails(){
+  
+  this.populateCount()
+  return localStorage.getItem('employeelist')
+ }
 }
   
   

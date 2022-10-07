@@ -32,7 +32,7 @@
   </div>
   <div class="form-group">
     <label for="name">Office</label>
-    <select class="border-1  form-control " #office (click)="getOffice(office.value)">
+    <select class="border-1  form-control " #office (click)="getOffice(office.value)"[ngModel]='office'>
       <option value="" [selected]=true [disabled]="true">Select Office</option>
       <option *ngFor="let element of officeList" >{{element}}</option>
     </select>
@@ -56,6 +56,12 @@
            required
            [(ngModel)]="skypeid" name="skypeid" >
   </div>
- <button type="button" (click)="onUpdateClick()">Update</button>
+  <span class="form-group">
+    <button type="submit" class="btn btn-success" (click)="onUpdateClick()">Update</button>
+  </span>
+  <span class="form-group float-end">
+    <button type="submit" (click)= 'closeDialog()'class="btn btn-danger">Close</button>
+  </span>
+ 
 </form>
   

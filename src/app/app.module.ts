@@ -20,6 +20,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './Components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { ReactiveFormsModule } from '@angular/forms';
    
     EmployeeListComponent,
    
-    EmployeeDetailsComponent
+    EmployeeDetailsComponent,
+        HeaderComponent,
+        
   
   ],
   providers:[

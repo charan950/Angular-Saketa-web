@@ -33,11 +33,15 @@ export class AppComponent {
    }
 
    ngOnInit(){
-    this.getalphaArray();
+   
   
    }
    openpop(){
-    this.dialog.open(AddEmployeeComponent)
+    this.dialog.open(AddEmployeeComponent,{
+      width: '600px',
+      height:'700px',
+      data: {}
+    })
   }
 
   onKeyUp(value:string,bool:boolean){
@@ -54,12 +58,8 @@ export class AppComponent {
   onSelected(value:string) {
     this.employeelistservice.setFilteredBy(value);  
 	}
-  getalphaArray(){
-    let index=0;
-    for (let i = 65; i < 91; i++) {
-      var al = String.fromCharCode(i);
-      this.alphaArray[index]=al;
-      index++;
-    }
+ 
+  clearButton(){
+    this.router.navigate([''])
   }
 }
