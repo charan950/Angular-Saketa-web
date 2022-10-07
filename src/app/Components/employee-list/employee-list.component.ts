@@ -23,10 +23,9 @@ export class EmployeeListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-  
+   
     this.employeelistservice.rawStoredEmployeeList.subscribe((res) => {
       this.filterlist = res;
-     
       this.employeelistservice.filterby.subscribe((res) => {
         if (res == 'preferredname') {
           console.log('pnmae');
@@ -233,14 +232,12 @@ export class EmployeeListComponent implements OnInit {
         }
       });
     });
+    this.filterlist=JSON.parse(localStorage.getItem('employeelist'));
+    this.employeelistservice.populateCount(this.filterlist);
   }
 
-  getDetails(employee:Employee,id:number) {
-    this.dialog.open(EmployeeDetailsComponent,{
-      width: '600px',
-    height:'700px',
-    data: {}
-    })
-  this.employeelistservice.updateEmployeeDetails(employee,id)
+  getDetails(employee:Employee) {
+    this.dialog.open(EmployeeDetailsComponent)
+  this.employeelistservice.updateEmployeeDetails(employee)
   }
 }

@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './Components/sidebar/sidebar.component';
-import { DepartmentDetailsComponent } from './Components/department-details/department-details.component';
+import { DepartmentDetailsComponent } from './Components/sideBar-filter/department-details.component';
 import { AlphabetsComponent } from './Components/alphabets/alphabets.component';
 import { AddEmployeeComponent } from './Components/add-employee/add-employee.component';
 import { AlphabetsService } from './Service/alphabets.service';

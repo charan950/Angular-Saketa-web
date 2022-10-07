@@ -6,80 +6,83 @@ import { EmployeeListService } from 'src/app/Service/employee-list.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
-itcount=0;hrcount=0;mdcount=0;salescount=0;seatlecount=0;indiacount=0;
-sharepointcount=0;netcount=0;bicount=0;bacount=0;recount=0;omcount=0;pmcount=0;secount=0;
-   more:boolean;
-   less:boolean
+  itCount=0
+  hrCount = 0;
+  mdCount = 0;
+  salesCount = 0;
+  seatleCount = 0;
+  indiaCount = 0;
+  sharepointCount = 0;
+  netCount = 0;
+  biCount = 0;
+  baCount = 0;
+  reCount = 0;
+  omCount = 0;
+  pmCount = 0;
+  seCount = 0;
+  more: boolean;
+  less: boolean;
+  filterList: Employee[] = [];
 
-constructor(private employeelistservice:EmployeeListService) { 
-  
-}
+  constructor(private employeelistservice: EmployeeListService) {}
 
   ngOnInit(): void {
-    this.employeelistservice.getDetails()
-    this.more=true;
    
-    this.employeelistservice.itCount.subscribe(res=>{
-      this.itcount=res;
-     
-    })
-    this.employeelistservice.hrCount.subscribe(res=>{
-      this.hrcount=res;
-    })
-    this.employeelistservice.mdCount.subscribe(res=>{
-      this.mdcount=res;
-    })
-    this.employeelistservice.salesCount.subscribe(res=>{
-      this.salescount=res;
-    })
-    this.employeelistservice.seatleCount.subscribe(res=>{
-      this.seatlecount=res;
-    })
-    this.employeelistservice.indiaCount.subscribe(res=>{
-      this.indiacount=res;
-    })
-    this.employeelistservice.sharepointCount.subscribe(res=>{
-      this.sharepointcount=res;
-    })
-    this.employeelistservice.netCount.subscribe(res=>{
-      this.netcount=res;
-    })
-    this.employeelistservice.reCount.subscribe(res=>{
-      this.recount=res;
-    })
-    this.employeelistservice.biCount.subscribe(res=>{
-      this.bicount=res;
-    })
-    this.employeelistservice.baCount.subscribe(res=>{
-      this.bacount=res;
-    })
-    this.employeelistservice.omCount.subscribe(res=>{
-      this.omcount=res;
-    })
-    this.employeelistservice.pmCount.subscribe(res=>{
-      this.pmcount=res;
-    })
-    this.employeelistservice.seCount.subscribe(res=>{
-      this.secount=res;
-    })
-   
-    
-  }
- 
-  viewMore(){
-   
-    this.more=false;
-    this.less=true;
-  }
-  viewLess(){
-    this.less=false;
-    this.more=true;
-  }
-   
+    this.more = true;
+
+    this.employeelistservice.itCount.subscribe((res) => {
+      this.itCount = res;
+    });
+    this.employeelistservice.hrCount.subscribe((res) => {
+      this.hrCount = res;
+    });
+    this.employeelistservice.mdCount.subscribe((res) => {
+      this.mdCount = res;
+    });
+    this.employeelistservice.salesCount.subscribe((res) => {
+      this.salesCount = res;
+    });
+    this.employeelistservice.seatleCount.subscribe((res) => {
+      this.seatleCount = res;
+    });
+    this.employeelistservice.indiaCount.subscribe((res) => {
+      this.indiaCount = res;
+    });
+    this.employeelistservice.sharepointCount.subscribe((res) => {
+      this.sharepointCount = res;
+    });
+    this.employeelistservice.netCount.subscribe((res) => {
+      this.netCount = res;
+    });
+    this.employeelistservice.reCount.subscribe((res) => {
+      this.reCount = res;
+    });
+    this.employeelistservice.biCount.subscribe((res) => {
+      this.biCount = res;
+    });
+    this.employeelistservice.baCount.subscribe((res) => {
+      this.baCount = res;
+    });
+    this.employeelistservice.omCount.subscribe((res) => {
+      this.omCount = res;
+    });
+    this.employeelistservice.pmCount.subscribe((res) => {
+      this.pmCount = res;
+    });
+    this.employeelistservice.seCount.subscribe((res) => {
+      this.seCount = res;
+    });
   }
 
-
-
+  viewMore() {
+    this.more = false;
+    this.less = true;
+  }
+  viewLess() {
+    this.less = false;
+    this.more = true;
+  }
+}

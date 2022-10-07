@@ -38,7 +38,7 @@ export class EmployeeListService {
   rawStoredJobList=new Subject<JobsList[]>();
   constructor(){}
 
-  populateCount() {
+  populateCount(employee:Employee[]) {
    
     let itCount=0,hrCount=0,mdCount=0, salesCount=0, seatleCount=0, indiaCount=0, sharepointCount=0, 
     netCount=0, biCount=0, baCount=0, reCount=0,omCount=0,pmCount=0,seCount=0;
@@ -55,7 +55,7 @@ export class EmployeeListService {
     this.omCount.next(omCount);
     this.pmCount.next(pmCount);
     this.seCount.next(seCount);
-    
+    this.allEmployees=employee
     for(let emp of this.allEmployees){
       
       if(emp.Department==='IT Department'){
@@ -131,18 +131,14 @@ export class EmployeeListService {
      localStorage.setItem('employeesDepartmentTable',JSON.stringify(this.departmentList))
      this.rawStoredEmployeeList.next(JSON.parse(localStorage.getItem('employeelist')))
      this.rawStoredJobList.next(JSON.parse(localStorage.getItem('employeesJobTable')))
-     this.populateCount();
+     this.populateCount(this.allEmployees);
   }
   
 
-  updateEmployeeDetails(employee:Employee,id:number){
+  updateEmployeeDetails(employee:Employee){
     
-  this.allEmployees[id-1]=employee;
-  console.log(this.allEmployees)
   this.employeeDetail=employee
-  console.log(this.jobList)
-  this.jobList[id-1]=({employeeId:employee.employeeId,jobTitle: this.allEmployees[id-1].Job})
-  this.departmentList[id-1]=({employeeId:employee.employeeId,employeeDepartment:employee.Department})
+  
   }
   setSearchText(value:string){
   
@@ -159,11 +155,7 @@ export class EmployeeListService {
     this.alphabet.next(value);
     
   }
- getDetails(){
-  
-  this.populateCount()
-  return localStorage.getItem('employeelist')
- }
+ 
 }
   
   
