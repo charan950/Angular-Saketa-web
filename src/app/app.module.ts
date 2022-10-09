@@ -30,14 +30,12 @@ import { HeaderComponent } from './Components/header/header.component';
     AlphabetsComponent,
     AddEmployeeComponent,
     EmployeeDetailsComponent,
-   
     EmployeeListComponent,
-   
     EmployeeDetailsComponent,
-        HeaderComponent,
-        
-  
+    HeaderComponent,
+
   ],
+  
   providers:[
     AlphabetsService,
     EmployeeListService,

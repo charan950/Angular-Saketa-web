@@ -2,7 +2,7 @@
   <form class="form" [formGroup]="addform" (ngSubmit)=" addEmployee()">
     <div class="form-group">
         <label>FirstName</label>
-        <input type="text" class="form-control" formControlName="firstname"[(ngModel)]="firstname">
+        <input type="text" class="form-control" formControlName="firstname"[(ngModel)]="firstName" (keyup)="autoPopulated()">
         <span class="text-danger"
             *ngIf="(submitted) && addform.controls.firstname.errors?.required">
             First Name is required
@@ -10,7 +10,7 @@
     </div>
      <div class="form-group">
       <label>Last Name</label>
-      <input type="text" class="form-control" formControlName="lastname"  [(ngModel)]="LastName"  >
+      <input type="text" class="form-control" formControlName="lastname"  [(ngModel)]="lastName" (keyup)="autoPopulated()"  >
       <span class="text-danger"
           *ngIf="(addform.controls.lastname.touched||submitted) && addform.controls.lastname.errors?.required">
           Last Name is required
@@ -18,7 +18,7 @@
   </div>
   <div class="form-group">
     <label>Preferred Name</label>
-    <input type="text" class="form-control" formControlName="preferredname" [ngModel]="LastName" >
+    <input type="text" class="form-control" formControlName="preferredname" [ngModel]="preferredName" >
     <span class="text-danger"
         *ngIf="(addform.controls.preferredname.touched||submitted) && addform.controls.preferredname.errors?.required">
         Preferred Name is required

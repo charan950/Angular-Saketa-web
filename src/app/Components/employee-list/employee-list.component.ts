@@ -237,7 +237,11 @@ export class EmployeeListComponent implements OnInit {
   }
 
   getDetails(employee:Employee) {
-    this.dialog.open(EmployeeDetailsComponent)
+    this.dialog.open(EmployeeDetailsComponent,{
+      width: '600px',
+      height:'700px',
+      data: {}
+    })
   this.employeelistservice.updateEmployeeDetails(employee)
   }
 }

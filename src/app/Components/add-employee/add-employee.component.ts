@@ -23,7 +23,9 @@ export class AddEmployeeComponent implements OnInit {
   @ViewChild('closebutton') closebutton: {
     nativeElement: { click: () => void };
   };
-
+  preferredName:string=''
+  firstName:string='';
+  lastName:string=''
   employeeId: number = 1;
   employee: Employee;
   addform: FormGroup;
@@ -70,6 +72,7 @@ export class AddEmployeeComponent implements OnInit {
       ]),
       skypeid: new FormControl(null, Validators.required),
     });
+   
   }
 
   addEmployee() {
@@ -110,5 +113,10 @@ export class AddEmployeeComponent implements OnInit {
     ) {
       this.dialog.closeAll();
     }
+  }
+  autoPopulated(){
+   
+    this.preferredName=  this.firstName+' '+this.lastName
+  
   }
 }
