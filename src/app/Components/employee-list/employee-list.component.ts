@@ -7,6 +7,7 @@ import { EmployeeListService } from 'src/app/Service/employee-list.service';
 import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
 import { Subject } from 'rxjs';
 import { coerceStringArray } from '@angular/cdk/coercion';
+import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -32,10 +33,12 @@ export class EmployeeListComponent implements OnInit {
     
     this.filterlist = JSON.parse(localStorage.getItem('employeelist'))
     this.employeelistservice.populateCount(this.filterlist);
+    console.log('sai')
     this.employeelistservice.rawStoredEmployeeList.subscribe((res) => {
       this.filterlist = res;
       this.filteredEmployees = res;
       this.employeelistservice.populateCount(this.filterlist);
+      
     });
     
     this.filteredEmployees = this.filterlist;
@@ -81,16 +84,26 @@ export class EmployeeListComponent implements OnInit {
       });
     }
       
-  
+  details(employee: Employee){
+    this.employeelistservice.updateEmployeeDetails(employee)
+    this.dialog.open(EmployeeDetailsComponent, {
+      width: '600px',
+      height: '700px',
+      data: {}
+    })
+  }
 
 getDetails(employee: Employee) {
-  this.dialog.open(EmployeeDetailsComponent, {
+  this.dialog.open(AddEmployeeComponent, {
     width: '600px',
     height: '700px',
     data: {}
   })
+  this.employeelistservice.openAddForm=false
+  this.employeelistservice.openUpdateForm=true
   this.employeelistservice.updateEmployeeDetails(employee)
 }
+
 
 }
 

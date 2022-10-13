@@ -42,6 +42,9 @@ export class AppComponent {
       height:'700px',
       data: {}
     })
+    this.employeelistservice.openAddForm=true
+    this.employeelistservice.openUpdateForm=false
+    console.log(this.employeelistservice.openAddForm)
   }
 
   onKeyUp(value:string,isTrue:boolean){
@@ -63,7 +66,8 @@ export class AppComponent {
 	}
  
   clearButton(){
-   
+   this.searchtext=''
     this.router.navigate(['/'])
+    console.log(this.searchtext)
   }
 }

@@ -37,7 +37,8 @@ export class EmployeeListService {
   departmentList:EmployeeDepartment[]=[];
   rawStoredEmployeeList=new Subject<Employee[]>();
   rawStoredJobList=new Subject<JobsList[]>();
-  
+  openAddForm:boolean;
+  openUpdateForm:boolean;
   constructor(private router:Router){}
 
   populateCount(employee:Employee[]) {
@@ -112,33 +113,33 @@ export class EmployeeListService {
  
   addEmployee(employee:Employee){
   
-   this.allEmployees=JSON.parse(localStorage.getItem('employeelist'))
-   this.rawStoredJobList.subscribe(res=>{
-     this.jobList=res;
-   })
-   if(this.allEmployees== null){
-     this.allEmployees=[employee]
-     this.jobList=[{employeeId:employee.employeeId,jobTitle:employee.Job}]
-     this.departmentList=[{employeeId:employee.employeeId,employeeDepartment:employee.Department}]
+    this.allEmployees=JSON.parse(localStorage.getItem('employeelist'))
+    this.rawStoredJobList.subscribe(res=>{
+      this.jobList=res;
+    })
+    if(this.allEmployees== null){
+      this.allEmployees=[employee]
+      this.jobList=[{employeeId:employee.employeeId,jobTitle:employee.Job}]
+      this.departmentList=[{employeeId:employee.employeeId,employeeDepartment:employee.Department}]
+     
+    }else{
+     
+      this.allEmployees.push(employee)
+ 
+      this.jobList.push({employeeId:employee.employeeId,jobTitle:employee.Job})
+      this.departmentList.push({employeeId:employee.employeeId,employeeDepartment:employee.Department})
+    }
     
-   }else{
-    
-     this.allEmployees.push(employee)
-
-     this.jobList.push({employeeId:employee.employeeId,jobTitle:employee.Job})
-     this.departmentList.push({employeeId:employee.employeeId,employeeDepartment:employee.Department})
+      localStorage.setItem('employeelist',JSON.stringify(this.allEmployees))
+      localStorage.setItem('employeesJobTable',JSON.stringify(this.jobList))
+      localStorage.setItem('employeesDepartmentTable',JSON.stringify(this.departmentList))
+      this.rawStoredEmployeeList.next(JSON.parse(localStorage.getItem('employeelist')))
+      this.rawStoredJobList.next(JSON.parse(localStorage.getItem('employeesJobTable')))
+      this.populateCount(this.allEmployees);
+      this.rawStoredEmployeeList.subscribe((res) => {
+       this.filterList = res;
+     });
    }
-   
-     localStorage.setItem('employeelist',JSON.stringify(this.allEmployees))
-     localStorage.setItem('employeesJobTable',JSON.stringify(this.jobList))
-     localStorage.setItem('employeesDepartmentTable',JSON.stringify(this.departmentList))
-     this.rawStoredEmployeeList.next(JSON.parse(localStorage.getItem('employeelist')))
-     this.rawStoredJobList.next(JSON.parse(localStorage.getItem('employeesJobTable')))
-     this.populateCount(this.allEmployees);
-     this.rawStoredEmployeeList.subscribe((res) => {
-      this.filterList = res;
-    });
-  }
   
 
   updateEmployeeDetails(employee:Employee){
@@ -161,12 +162,28 @@ export class EmployeeListService {
     this.alphabet.next(value);
     console.log(value)
   }
-  
+
   deleteEmployee(id:number){
+    console.log(id)
     this.allEmployees=JSON.parse(localStorage.getItem('employeelist'))
-    this.allEmployees.splice(id-1,1)
-    this.rawStoredEmployeeList.next(this.allEmployees)  
+    let newlist:Employee[]=[];
+    for(let emp of this.allEmployees){
+     if(emp.employeeId!==id){
+      newlist.push(emp)
+     }
+   }
+   localStorage.setItem('employeelist',JSON.stringify(newlist))
+   
+    this.rawStoredEmployeeList.next(newlist)  
   }
+  // openAddform(isTrue:boolean){
+  //   this.openAddForm=true
+   
+  // }
+  // openUpdateform(isTru:boolean){
+  //   this.openUpdateForm=true
+   
+  // }
 
 }
   

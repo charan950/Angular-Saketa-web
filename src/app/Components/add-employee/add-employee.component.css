@@ -1,3 +1,6 @@
 form{
     overflow: auto;
 }
+.req {
+    color: red;
+}
