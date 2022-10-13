@@ -29,14 +29,16 @@ export class EmployeeListService {
   pmCount=new Subject<number>()
   searchText=new Subject<string>();
   employeeDetail:Employee;
-  filterby=new Subject<string>();
+  filterby:string;
   alphabet=new Subject<string>();
   allEmployees:Employee[]=[]
+  filterList:Employee[]=[];
   jobList:JobsList[]=[]
   departmentList:EmployeeDepartment[]=[];
   rawStoredEmployeeList=new Subject<Employee[]>();
   rawStoredJobList=new Subject<JobsList[]>();
-  constructor(){}
+  
+  constructor(private router:Router){}
 
   populateCount(employee:Employee[]) {
    
@@ -109,9 +111,8 @@ export class EmployeeListService {
   }
  
   addEmployee(employee:Employee){
-   this.rawStoredEmployeeList.subscribe(res=>{
-     this.allEmployees=res
-   })
+  
+   this.allEmployees=JSON.parse(localStorage.getItem('employeelist'))
    this.rawStoredJobList.subscribe(res=>{
      this.jobList=res;
    })
@@ -121,7 +122,9 @@ export class EmployeeListService {
      this.departmentList=[{employeeId:employee.employeeId,employeeDepartment:employee.Department}]
     
    }else{
+    
      this.allEmployees.push(employee)
+
      this.jobList.push({employeeId:employee.employeeId,jobTitle:employee.Job})
      this.departmentList.push({employeeId:employee.employeeId,employeeDepartment:employee.Department})
    }
@@ -132,6 +135,9 @@ export class EmployeeListService {
      this.rawStoredEmployeeList.next(JSON.parse(localStorage.getItem('employeelist')))
      this.rawStoredJobList.next(JSON.parse(localStorage.getItem('employeesJobTable')))
      this.populateCount(this.allEmployees);
+     this.rawStoredEmployeeList.subscribe((res) => {
+      this.filterList = res;
+    });
   }
   
 
@@ -143,19 +149,25 @@ export class EmployeeListService {
   setSearchText(value:string){
   
     this.searchText.next(value);
-
+  
   }
   
   setFilteredBy(value:string){
-    this.filterby.next(value);
-   
+    this.filterby=value;
+    console.log(this.filterby)
   }
   setAlpha(value:any){
   
     this.alphabet.next(value);
-    
+    console.log(value)
   }
- 
+  
+  deleteEmployee(id:number){
+    this.allEmployees=JSON.parse(localStorage.getItem('employeelist'))
+    this.allEmployees.splice(id-1,1)
+    this.rawStoredEmployeeList.next(this.allEmployees)  
+  }
+
 }
   
   

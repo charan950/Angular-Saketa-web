@@ -42,18 +42,7 @@ export class DepartmentDetailsComponent implements OnInit {
             index++
         }
      }
-      // }
-      // else if(this.EmployeelistArray[i].office==this.dep){
-      //   console.log(this.dep)
-      //   this.filterdListArray[index]=(this.EmployeelistArray[i]);
-      //   index++
-      // }
-    
-      // else if(this.EmployeelistArray[i].Job==this.dep){
-       
-      //   this.filterdListArray[index]=(this.EmployeelistArray[i]);
-      //   index++
-      // }
+     
     
       this.EmployeelistArray=this.filterdListArray
     });  

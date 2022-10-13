@@ -79,72 +79,8 @@
   <span class="form-group float-end">
     <button type="submit" (click)= 'closeDialog()'class="btn btn-danger">Close</button>
   </span>
+  <span class="form-group float-end">
+    <button type="submit" (click)= 'deleteEmployee()'class="btn btn-danger">Delete</button>
+  </span>
 
 </form>
-<!-- <form >
-  <div class="form-group">
-    <label for="name">FirstName</label>
-    <input type="text" class="form-control" 
-           required
-           [(ngModel)]="firstname" name="firstname"   >
-  </div>
- 
-  <div class="form-group">
-    <label for="alterEgo">LastName</label>
-    <input type="text"  class="form-control" 
-           [(ngModel)]="lastname" name="lastname">
-  </div>
-  <div class="form-group">
-    <label for="name">PrefferedName</label>
-    <input type="text" class="form-control" 
-           required
-           [(ngModel)]="preferredname" name="preferredname" >
-  </div>
-  <div class="form-group">
-    <label for="name">Email</label>
-    <input type="text" class="form-control" 
-           required
-           [(ngModel)]="email" name="email" >
-  </div>
-  <div class="form-group">
-    <label for="name">Job</label>
-    <select class="border-1 form-control w-100" #job (click)="getJob(job.value)">
-      <option value="" [selected]=true [disabled]="true">Select Job Title</option>
-      <option *ngFor="let element of jobsListArray" >{{element}}</option>
-    </select> 
-  </div>
-  <div class="form-group">
-    <label for="name">Office</label>
-    <select class="border-1  form-control " #office (click)="getOffice(office.value)"[ngModel]='office'>
-      <option value="" [selected]=true [disabled]="true">Select Office</option>
-      <option *ngFor="let element of officeList" >{{element}}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="name">Department</label>
-    <select class="border-1 form-control" #department (click)="getDepartment(department.value)" >
-      <option value="" [selected]=true [disabled]="true">Select Department</option>
-      <option *ngFor="let element of departmentListArray" >{{element}}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="name">Phone Number</label>
-    <input type="text" class="form-control" 
-           required
-           [(ngModel)]="phonenumber" name="phonenumber" >
-  </div>
-  <div class="form-group">
-    <label for="name">SkypeId</label>
-    <input type="text" class="form-control" 
-           required
-           [(ngModel)]="skypeid" name="skypeid" >
-  </div>
-  <span class="form-group">
-    <button type="submit" class="btn btn-success" (click)="onUpdateClick()">Update</button>
-  </span>
-  <span class="form-group float-end">
-    <button type="submit" (click)= 'closeDialog()'class="btn btn-danger">Close</button>
-  </span>
- 
-</form>
-   -->

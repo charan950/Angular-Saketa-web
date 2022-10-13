@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DepartmentDetailsComponent } from './department-details.component';
+import { DepartmentDetailsComponent } from './sideBar-filter';
 
 describe('DepartmentDetailsComponent', () => {
   let component: DepartmentDetailsComponent;

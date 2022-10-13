@@ -24,8 +24,8 @@ export class AppComponent {
   alphabet:string
   filterby:string;
   alpha:string;
- 
-  fillterbyarray=['preferredname','Firstname','LastName','Job','Department','Office']
+ filterValue='PreferredNam'
+  fillterbyarray=['PreferredName','FirstName','LastName','Job','Department','office']
   
   constructor(private employeelistservice:EmployeeListService,private router:Router,private alphabetsservice:AlphabetsService,private  dialog:  MatDialog) {
    
@@ -44,12 +44,15 @@ export class AppComponent {
     })
   }
 
-  onKeyUp(value:string,bool:boolean){
-    if(bool){
+  onKeyUp(value:string,isTrue:boolean){
+    if(isTrue){
       this.employeelistservice.setAlpha(value);
+     
     }
+    
     else{
       this.employeelistservice.setSearchText(value);
+      // this.employeelistservice.getDetails()
     }
   
     this.router.navigate([''])
@@ -60,6 +63,7 @@ export class AppComponent {
 	}
  
   clearButton(){
-    this.router.navigate([''])
+   
+    this.router.navigate(['/'])
   }
 }
