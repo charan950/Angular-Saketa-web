@@ -21,7 +21,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './Components/header/header.component';
-
+// import { HttpClientModule } from '@angular/common/http'
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +60,7 @@ import { HeaderComponent } from './Components/header/header.component';
     BrowserAnimationsModule,
      MatDialogModule,
     ReactiveFormsModule,
+   
    MatDialogModule, MatInputModule, MatButtonModule, MatCardModule, MatFormFieldModule,
   ],
  

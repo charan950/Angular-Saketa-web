@@ -4,3 +4,44 @@ form{
 .req {
     color: red;
 }
+
+.form-input {
+    width:350px;
+    height: 150px;
+    padding:20px;
+    background-image: url('/assets/Images/default-profile.png');
+    background-size: 100% 100%;
+    border-radius: 50%;
+    display:block;
+    object-fit: cover;
+  
+    cursor:pointer;
+  }
+  .form-input input {
+    display:none;
+  }
+  .profile{
+    width:350px;
+    height: 150px;
+    padding:20px;
+    border-radius: 50%;
+  }
+  .empProfile input{
+    display:none;
+  }
+  /* .form-input label {
+    display:block;
+    width:45%;
+    height:45px;
+    margin-left: 25%;
+    line-height:50px;
+    text-align:center;
+    background:#1172c2;
+    color:#fff;
+    font-size:15px;
+    font-family:"Open Sans",sans-serif;
+    text-transform:Uppercase;
+    font-weight:600;
+    border-radius:5px;
+    cursor:pointer;
+  } */

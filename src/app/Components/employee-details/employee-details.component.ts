@@ -6,6 +6,7 @@ import { EmployeeListService } from 'src/app/Service/employee-list.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddEmployeeComponent } from '../add-employee/add-employee.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-employee-details',
@@ -20,7 +21,9 @@ export class EmployeeDetailsComponent implements OnInit {
   };
 
   employeeId: number = 1;
-  employee: Employee;
+  employee=new Subject<Employee>()
+  list:Employee;
+  employeeProfile:string;
   firstName:string;
   lastName:string;
   preferredName:string;
@@ -42,16 +45,27 @@ export class EmployeeDetailsComponent implements OnInit {
     private formbulider: FormBuilder
   ) {}
   ngOnInit(): void {
-    this.employee=this.employeelistservice.employeeDetail;
-    this.firstName=this.employee.FirstName;
-    this.lastName=this.employee.LastName;
-    this.preferredName=this.employee.PreferredName;
-    this.email=this.employee.Email;
-    this.phoneNumber=this.employee.PhoneNumber;
-    this.office=this.employee.office;
-    this.department=this.employee.Department;
-    this.skypeId=this.employee.SkypeId;
-    this.job=this.employee.Job;
+    console.log(this.employeelistservice.employeeDetail)
+    this.list=this.employeelistservice.employeeDetail
+    
+    this.employee.next(this.employeelistservice.employeeDetail);
+
+    this.employee.subscribe(employee=>{
+     this.list=employee
+     console.log(this.employeelistservice.employeeDetail)
+    })
+    console.log(this.employeelistservice.employeeDetail)
+    this.employeeProfile=this.list.employeeProfile
+    this.firstName=this.list.FirstName;
+      this.lastName=this.list.LastName;
+      this.preferredName=this.list.PreferredName;
+      this.email=this.list.Email;
+      this.phoneNumber=this.list.PhoneNumber;
+      this.office=this.list.office;
+      this.department=this.list.Department;
+      this.skypeId=this.list.SkypeId;
+      this.job=this.list.Job;
+  console.log(this.firstName)
   }
   //   this.updateForm = new FormGroup({
   //     firstname: new FormControl(null, Validators.required),
@@ -150,8 +164,14 @@ export class EmployeeDetailsComponent implements OnInit {
       })
       this.employeelistservice.openAddForm=false
       this.employeelistservice.openUpdateForm=true
-      this.employeelistservice.updateEmployeeDetails(this.employee)
+     
+     
     }
+    closeDialog() {
+  
+      this.dialog.closeAll()
+       
+     }
   
 }
 

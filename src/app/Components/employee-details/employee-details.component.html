@@ -1,13 +1,44 @@
-<div class="border text-center">
-  <h3>{{firstName}}</h3>
-  <h3>{{lastName}}<br></h3>
-  <h3>{{preferredName}}<br></h3>
-  <h3>{{job}}<br></h3>
-  <h3>{{department}}<br></h3>
-  <h3>{{office}}<br></h3>
-  <h3>{{email}}<br></h3>
-  <h3>{{phoneNumber}}<br></h3>
-  <h3>{{skypeId}}<br></h3>
-
-<button (click)="editDetails()">Edit</button>
+<div class=" d-flex justify-content-center profile">
+<img  src={{employeeProfile}} *ngIf="employeeProfile!==''">
+<img src=".\assets\Images\default-profile.png" *ngIf="employeeProfile===''">
 </div>
+<div class="box">
+  <div >First Name : -</div>
+     <h3> {{firstName}}</h3>
+</div>
+<div class="box">
+  <div>Last Name : -</div>
+  <h3>{{lastName}}</h3>
+</div>
+<div class="box">
+  <div> Preferred Name : -</div>
+  <h3>{{preferredName}}</h3>
+</div>
+<div class="box">
+  <div> Employee Job : -</div>
+  <h3>{{job}}</h3>
+</div>
+<div class="box">
+ <div> Department : -</div>
+  <h3>{{department}}</h3>
+</div>
+<div class="box">
+  <div> Office : -</div>
+  <h3>{{office}}</h3>
+</div>
+<div class="box">
+    <div>Email : -</div>
+  <h3>{{email}}</h3>
+</div>
+<div class="box">
+  <div>Phone Number: -</div>
+  <h3>{{phoneNumber}}</h3>
+</div>
+<div class="box">
+<div> Skype Id: -</div>
+  <h3>{{skypeId}}</h3>
+</div>
+<span><button type="submit" class="btn btn-primary p-2" (click)="editDetails()">Edit</button></span>
+<span class="form-group float-end" >
+  <button type="submit" (click)= 'closeDialog()'class="btn btn-danger">Close</button>
+</span>

@@ -6,7 +6,9 @@ import { Employee } from '../Model/employee';
 import { from, Subject, multicast, of, BehaviorSubject, never, Observable, retry } from 'rxjs';
 import { JobsList } from '../Model/jobs-list';
 import { EmployeeDepartment } from '../Model/employee-department';
-
+import { MatDialog } from '@angular/material/dialog';
+import { EmployeeDetailsComponent } from '../Components/employee-details/employee-details.component';
+import  data from '\data.json';
 @Injectable({
   providedIn: 'root'
 })
@@ -39,7 +41,8 @@ export class EmployeeListService {
   rawStoredJobList=new Subject<JobsList[]>();
   openAddForm:boolean;
   openUpdateForm:boolean;
-  constructor(private router:Router){}
+  employee=data
+  constructor(private router:Router, private dialog: MatDialog,private http:HttpClient){}
 
   populateCount(employee:Employee[]) {
    
@@ -112,7 +115,8 @@ export class EmployeeListService {
   }
  
   addEmployee(employee:Employee){
-  
+  let url= '\data.json';
+ 
     this.allEmployees=JSON.parse(localStorage.getItem('employeelist'))
     this.rawStoredJobList.subscribe(res=>{
       this.jobList=res;
@@ -125,7 +129,7 @@ export class EmployeeListService {
     }else{
      
       this.allEmployees.push(employee)
- 
+      this.http.post(url,employee )
       this.jobList.push({employeeId:employee.employeeId,jobTitle:employee.Job})
       this.departmentList.push({employeeId:employee.employeeId,employeeDepartment:employee.Department})
     }
@@ -139,6 +143,9 @@ export class EmployeeListService {
       this.rawStoredEmployeeList.subscribe((res) => {
        this.filterList = res;
      });
+   
+     
+    
    }
   
 
@@ -176,15 +183,20 @@ export class EmployeeListService {
    
     this.rawStoredEmployeeList.next(newlist)  
   }
-  // openAddform(isTrue:boolean){
-  //   this.openAddForm=true
+  detailssPopUp(employee:Employee){
+    this.updateEmployeeDetails(employee)
+    this.dialog.open(EmployeeDetailsComponent, {
+      width: '600px',
+      height: '700px',
+      data: {}
+    })
    
-  // }
-  // openUpdateform(isTru:boolean){
-  //   this.openUpdateForm=true
-   
-  // }
+  }
+  list(){
 
+    return (this.http.get(' http://localhost:3000/employees'))
+    
+  }
 }
   
   

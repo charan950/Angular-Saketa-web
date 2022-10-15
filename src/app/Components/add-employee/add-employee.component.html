@@ -1,5 +1,25 @@
 
+
+ 
+<div class="form-group d-flex justify-content-center">
+  <div >
+        <div *ngIf ="employeeProfile ===''" class="form-input">
+          <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" (change)="onChanges($event)" class="form-control" formControlName="employeeprofile"  >  
+          <label for="imageUpload"><img class="icon" src='.\assets\Images\environments\edit icon.png'></label>
+        </div>
+  </div>
+  <div *ngIf ="employeeProfile !==''" class="empProfile">
+    <img class="profile" *ngIf ="employeeProfile !==''" src={{employeeProfile}} >
+    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" (change)="onChanges($event)" class="form-control" formControlName="employeeprofile"  >  
+    <label for="imageUpload"><img class="icon" src='.\assets\Images\environments\edit icon.png'></label>
+
+  </div>
+ 
+ 
+    
+</div>
   <form class="form" [formGroup]="addform" (ngSubmit)=" addEmployee()">
+    
     <div class="form-group">
       <label>First Name</label><span class="req p-2">*</span>
       <input type="text" class="form-control" formControlName="firstname" [(ngModel)]="firstName" (keyup)="autoPopulated()">

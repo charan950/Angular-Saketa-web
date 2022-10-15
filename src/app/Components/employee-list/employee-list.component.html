@@ -23,7 +23,8 @@
           <div class="list" >
               <div class="row">
                   <div class="col-4 ">
-                    <img class="profile p-2 " src=".\assets\Images\Image1.jfif">
+                    <img class="profile p-2 " src={{emp.employeeProfile}} *ngIf="emp.employeeProfile!==''">
+                    <img class="profile p-2" src=".\assets\Images\default-profile.png" *ngIf="emp.employeeProfile===''">
                   </div>
               <div class="col p-0">
                   <div>{{emp.FirstName}} {{emp.LastName}}</div>

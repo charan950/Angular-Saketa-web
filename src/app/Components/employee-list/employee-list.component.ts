@@ -8,14 +8,15 @@ import { EmployeeDetailsComponent } from '../employee-details/employee-details.c
 import { Subject } from 'rxjs';
 import { coerceStringArray } from '@angular/cdk/coercion';
 import { AddEmployeeComponent } from '../add-employee/add-employee.component';
-
+import { HttpClient } from '@angular/common/http';
+import  data from '\data.json';
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css'],
 })
 export class EmployeeListComponent implements OnInit {
-
+// Emp:Employee[]=[]
   alphabet: string;
   newlist: Employee[] = [];
   filterBy: string;
@@ -23,17 +24,19 @@ export class EmployeeListComponent implements OnInit {
   emplist = new Subject<Employee[]>();
   filterlist: Employee[] = []
   filteredEmployees: Employee[]
+  
   constructor(
     private router: Router,
     private employeelistservice: EmployeeListService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private http:HttpClient
   ) { }
-
+  em=data
   ngOnInit(): void {
-    
+  
+  
     this.filterlist = JSON.parse(localStorage.getItem('employeelist'))
     this.employeelistservice.populateCount(this.filterlist);
-    console.log('sai')
     this.employeelistservice.rawStoredEmployeeList.subscribe((res) => {
       this.filterlist = res;
       this.filteredEmployees = res;
@@ -86,23 +89,10 @@ export class EmployeeListComponent implements OnInit {
       
   details(employee: Employee){
     this.employeelistservice.updateEmployeeDetails(employee)
-    this.dialog.open(EmployeeDetailsComponent, {
-      width: '600px',
-      height: '700px',
-      data: {}
-    })
+    this.employeelistservice.detailssPopUp(employee)
+   
   }
 
-getDetails(employee: Employee) {
-  this.dialog.open(AddEmployeeComponent, {
-    width: '600px',
-    height: '700px',
-    data: {}
-  })
-  this.employeelistservice.openAddForm=false
-  this.employeelistservice.openUpdateForm=true
-  this.employeelistservice.updateEmployeeDetails(employee)
-}
 
 
 }

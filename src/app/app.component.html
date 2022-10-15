@@ -30,12 +30,12 @@
                 <div class="search mt-2 mb-2" >
                  
                   <label class="fs-5 m-3 ms-0">Search</label><i class="fa fa-search"></i>
-                  <input type="text" name="search"   #searchtext (keyup)="onKeyUp(searchtext.value,false)" (ngModel)="searchtext">
+                  <input type="text" name="search"  (keyup)="onKeyUp(false)" [(ngModel)]="searchtext">
                   <button type="button" class="clear-button ms-3 p-2 ps-4 pe-4 rounded" (click)="clearButton()" >clear</button>
                   <span class="fs-5 m-3 ms-5 ps-4">Filter By</span>
-                  <select class="border-1" #filterby  (change)="onSelected(filterby.value)" >
+                  <select class="border-1" [(ngModel)]="filterby">
                     
-                      <option *ngFor="let element of fillterbyarray" >{{element}}</option>
+                      <option *ngFor="let element of fillterbyarray" [ngValue]="element" >{{element}}</option>
                   </select> 
                   <button type="button" class="add-button m-0 rounded" (click)="openpop()">Add Employee</button>
                 </div>

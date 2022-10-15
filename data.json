@@ -1,0 +1,19 @@
+{
+  "employees": [
+    {
+      "id":1,
+      "fname":"sai",
+      "lname":"charan",
+      "pname":"sai",
+      "Job":"sharepoint",
+      "office":"india",
+      "email":"sai",
+      "department":"it",
+      "pnum":123456890,
+      "sky":"sai"
+      
+      
+    }
+  ]
+  
+}

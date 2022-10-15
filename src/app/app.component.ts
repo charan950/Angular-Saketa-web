@@ -6,6 +6,7 @@ import { Employee } from './Model/employee';
 import { AlphabetsService } from './Service/alphabets.service';
 import { AddEmployeeComponent } from './Components/add-employee/add-employee.component';
 import { MatDialog } from '@angular/material/dialog';
+
  
 @Component({
   selector: 'app-root',
@@ -22,20 +23,25 @@ export class AppComponent {
  
   searchtext:string;
   alphabet:string
-  filterby:string;
+  filterby:string='PreferredName'
   alpha:string;
  filterValue='PreferredNam'
   fillterbyarray=['PreferredName','FirstName','LastName','Job','Department','office']
   
-  constructor(private employeelistservice:EmployeeListService,private router:Router,private alphabetsservice:AlphabetsService,private  dialog:  MatDialog) {
+  constructor(private employeelistservice:EmployeeListService,
+    private router:Router,
    
-   
+    private  dialog:  MatDialog,
+  
+    ) {
    }
 
    ngOnInit(){
-   
+ 
   
-   }
+
+  }
+
    openpop(){
     this.dialog.open(AddEmployeeComponent,{
       width: '600px',
@@ -47,15 +53,15 @@ export class AppComponent {
     console.log(this.employeelistservice.openAddForm)
   }
 
-  onKeyUp(value:string,isTrue:boolean){
+  onKeyUp(isTrue:boolean){
     if(isTrue){
-      this.employeelistservice.setAlpha(value);
+      this.employeelistservice.setAlpha(this.searchtext);
      
     }
     
     else{
-      this.employeelistservice.setSearchText(value);
-      // this.employeelistservice.getDetails()
+      this.employeelistservice.setSearchText(this.searchtext);
+      
     }
   
     this.router.navigate([''])
@@ -67,7 +73,8 @@ export class AppComponent {
  
   clearButton(){
    this.searchtext=''
+   this.filterby='PreferredName'
+   this.employeelistservice.setSearchText(this.searchtext);
     this.router.navigate(['/'])
-    console.log(this.searchtext)
   }
 }
