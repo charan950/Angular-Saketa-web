@@ -118,10 +118,10 @@ export class AddEmployeeComponent implements OnInit {
         alert('Employee Details Added succesfully!!!');
         if(this.employeeProfile===''){
           this.employeeProfile=this.defaultProfile.innerHTML
-          console.log(  this.employeeProfile)
+         
         }
         this.employeeProfile=this.defaultProfile.innerHTML
-        console.log(  this.employeeProfile)
+      
         this.employee = new Employee(
           this.employeeId,
           this.employeeProfile,
@@ -144,7 +144,7 @@ export class AddEmployeeComponent implements OnInit {
     if(this.employeelistservice.openUpdateForm){
      
       if (this.addform.valid) {
-       console.log(this.employeeProfile)
+      
         this.employee.FirstName = this.addform.controls['firstname'].value,
             this.employee.LastName =  this.addform.controls['lastname'].value,
             this.employee.PreferredName =   this.addform.controls['preferredname'].value,
@@ -181,7 +181,7 @@ export class AddEmployeeComponent implements OnInit {
   autoPopulated(){
    
     this.preferredName=  this.firstName+' '+this.lastName
-    console.log(this.preferredName)
+   
   }
   updatedetails() {
 
@@ -212,8 +212,7 @@ export class AddEmployeeComponent implements OnInit {
   onChanges($event:Event){
     
     const file=($event.target as HTMLInputElement).files[0]
-    console.log(file)
-    console.log(this.convertToBase64(file));
+   
   }
   convertToBase64(file: File) {
    

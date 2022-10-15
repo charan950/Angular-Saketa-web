@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 import { coerceStringArray } from '@angular/cdk/coercion';
 import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 import { HttpClient } from '@angular/common/http';
-import  data from '\data.json';
+
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
@@ -26,12 +26,11 @@ export class EmployeeListComponent implements OnInit {
   filteredEmployees: Employee[]
   
   constructor(
-    private router: Router,
+  
     private employeelistservice: EmployeeListService,
-    private dialog: MatDialog,
-    private http:HttpClient
+   
   ) { }
-  em=data
+
   ngOnInit(): void {
   
   

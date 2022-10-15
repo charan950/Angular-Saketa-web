@@ -50,7 +50,7 @@ export class AppComponent {
     })
     this.employeelistservice.openAddForm=true
     this.employeelistservice.openUpdateForm=false
-    console.log(this.employeelistservice.openAddForm)
+   
   }
 
   onKeyUp(isTrue:boolean){

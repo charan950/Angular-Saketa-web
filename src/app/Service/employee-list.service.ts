@@ -42,7 +42,7 @@ export class EmployeeListService {
   openAddForm:boolean;
   openUpdateForm:boolean;
   employee=data
-  constructor(private router:Router, private dialog: MatDialog,private http:HttpClient){}
+  constructor( private dialog: MatDialog){}
 
   populateCount(employee:Employee[]) {
    
@@ -115,7 +115,7 @@ export class EmployeeListService {
   }
  
   addEmployee(employee:Employee){
-  let url= '\data.json';
+ 
  
     this.allEmployees=JSON.parse(localStorage.getItem('employeelist'))
     this.rawStoredJobList.subscribe(res=>{
@@ -129,7 +129,7 @@ export class EmployeeListService {
     }else{
      
       this.allEmployees.push(employee)
-      this.http.post(url,employee )
+     
       this.jobList.push({employeeId:employee.employeeId,jobTitle:employee.Job})
       this.departmentList.push({employeeId:employee.employeeId,employeeDepartment:employee.Department})
     }
@@ -167,11 +167,11 @@ export class EmployeeListService {
   setAlpha(value:any){
   
     this.alphabet.next(value);
-    console.log(value)
+   
   }
 
   deleteEmployee(id:number){
-    console.log(id)
+   
     this.allEmployees=JSON.parse(localStorage.getItem('employeelist'))
     let newlist:Employee[]=[];
     for(let emp of this.allEmployees){
@@ -192,11 +192,7 @@ export class EmployeeListService {
     })
    
   }
-  list(){
-
-    return (this.http.get(' http://localhost:3000/employees'))
-    
-  }
+ 
 }
   
   

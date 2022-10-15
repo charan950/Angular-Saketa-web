@@ -45,16 +45,16 @@ export class EmployeeDetailsComponent implements OnInit {
     private formbulider: FormBuilder
   ) {}
   ngOnInit(): void {
-    console.log(this.employeelistservice.employeeDetail)
+   
     this.list=this.employeelistservice.employeeDetail
     
     this.employee.next(this.employeelistservice.employeeDetail);
 
     this.employee.subscribe(employee=>{
      this.list=employee
-     console.log(this.employeelistservice.employeeDetail)
+    
     })
-    console.log(this.employeelistservice.employeeDetail)
+   
     this.employeeProfile=this.list.employeeProfile
     this.firstName=this.list.FirstName;
       this.lastName=this.list.LastName;
@@ -65,7 +65,7 @@ export class EmployeeDetailsComponent implements OnInit {
       this.department=this.list.Department;
       this.skypeId=this.list.SkypeId;
       this.job=this.list.Job;
-  console.log(this.firstName)
+ 
   }
   //   this.updateForm = new FormGroup({
   //     firstname: new FormControl(null, Validators.required),
