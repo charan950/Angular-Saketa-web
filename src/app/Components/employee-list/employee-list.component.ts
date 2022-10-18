@@ -4,11 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { Employee } from 'src/app/Model/employee';
 import { EmployeeListService } from 'src/app/Service/employee-list.service';
-import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
 import { Subject } from 'rxjs';
-import { coerceStringArray } from '@angular/cdk/coercion';
-import { AddEmployeeComponent } from '../add-employee/add-employee.component';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-employee-list',
@@ -21,7 +17,6 @@ export class EmployeeListComponent implements OnInit {
   newlist: Employee[] = [];
   filterBy: string;
   searchValue: string
-  emplist = new Subject<Employee[]>();
   filterlist: Employee[] = []
   filteredEmployees: Employee[]
   
@@ -76,8 +71,6 @@ export class EmployeeListComponent implements OnInit {
           field = this.employeelistservice.filterby;
         }
         for(let emp of this.filterlist){
-         
-        
           if (emp[field].toLocaleLowerCase().startsWith(alpha.toLocaleLowerCase())) {
            console.log(emp[field].toLocaleLowerCase() +' '+alpha.toLocaleLowerCase())
             this.filteredEmployees.push(emp);
@@ -89,10 +82,7 @@ export class EmployeeListComponent implements OnInit {
   details(employee: Employee){
     this.employeelistservice.updateEmployeeDetails(employee)
     this.employeelistservice.detailssPopUp(employee)
-   
+  
   }
-
-
-
 }
 

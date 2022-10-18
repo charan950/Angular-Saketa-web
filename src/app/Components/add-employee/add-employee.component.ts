@@ -26,8 +26,6 @@ export class AddEmployeeComponent implements OnInit {
     nativeElement: { click: () => void };
   };
   employeeProfile:string=''
-  defaultProfile=new Image();
-  
   firstName:string='';
   lastName:string='';
   preferredName:string='';
@@ -116,12 +114,7 @@ export class AddEmployeeComponent implements OnInit {
   
       if (this.addform.valid) {
         alert('Employee Details Added succesfully!!!');
-        if(this.employeeProfile===''){
-          this.employeeProfile=this.defaultProfile.innerHTML
-         
-        }
-        this.employeeProfile=this.defaultProfile.innerHTML
-      
+       
         this.employee = new Employee(
           this.employeeId,
           this.employeeProfile,
@@ -138,7 +131,7 @@ export class AddEmployeeComponent implements OnInit {
        
         this.employeelistservice.addEmployee(this.employee);
         this.closeDialog()
-        this.router.navigate(['']);
+        // this.router.navigate(['']);
       }
     }
     if(this.employeelistservice.openUpdateForm){
@@ -212,7 +205,7 @@ export class AddEmployeeComponent implements OnInit {
   onChanges($event:Event){
     
     const file=($event.target as HTMLInputElement).files[0]
-   
+   this.convertToBase64(file)
   }
   convertToBase64(file: File) {
    
