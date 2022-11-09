@@ -1,15 +1,16 @@
 export class Employee {
-    employeeId:number
-    employeeProfile:string
-    FirstName:string
-    LastName:string
-    PreferredName:string
-    Job:string
-    office:string
-    Email:string
-    Department:string
-    PhoneNumber:Number
-    SkypeId:string
+    employeeId:number;
+    employeeProfile:string;
+    FirstName:string;
+    LastName:string;
+    PreferredName:string;
+    Job:string;
+    office:string;
+    Email:string;
+    Department:string;
+    PhoneNumber:Number;
+    SkypeId:string;
+
     constructor(employeeId:number,employeeProfile:string,FirstName:string,LastName:string,PreferredName:string,Job:string,office:string,Email:string,Department:string,PhoneNumber:Number,SkypeId:string){
         this.employeeId=employeeId,
         this.employeeProfile=employeeProfile

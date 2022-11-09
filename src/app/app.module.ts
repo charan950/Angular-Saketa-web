@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './Components/sidebar/sidebar.component';
-import { DepartmentDetailsComponent } from './Components/sideBar-filter/sideBar-filter';
 import { AlphabetsComponent } from './Components/alphabets/alphabets.component';
 import { AddEmployeeComponent } from './Components/add-employee/add-employee.component';
 import { AlphabetsService } from './Service/alphabets.service';
@@ -21,18 +20,19 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './Components/header/header.component';
-// import { HttpClientModule } from '@angular/common/http'
+import { SideBarFilterComponent } from './Components/side-bar-filter/side-bar-filter.component';
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    DepartmentDetailsComponent,
+   SideBarFilterComponent,
     AlphabetsComponent,
     AddEmployeeComponent,
     EmployeeDetailsComponent,
     EmployeeListComponent,
     EmployeeDetailsComponent,
     HeaderComponent,
+   
 
   ],
   

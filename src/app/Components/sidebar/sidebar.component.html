@@ -1,27 +1,24 @@
 
     <h3>Departments</h3>
-    <div><a [routerLink]="['/sidebar/','IT Department']">IT({{itCount}})</a></div>
-    <div ><a [routerLink]="['/sidebar/','Human Resources']">Human Resources({{hrCount}})</a></div>
-    <div><a [routerLink]="['/sidebar/','MD Department']">MD({{mdCount}})</a></div>
-    <div><a [routerLink]="['/sidebar/','Sales']">Sales({{salesCount}})</a></div>
+    <div><a [routerLink]="['/sidebar/','IT Department']">IT({{employeecount.itCount}})</a></div>
+    <div ><a [routerLink]="['/sidebar/','Human Resources']">Human Resources({{employeecount.hrCount}})</a></div>
+    <div><a [routerLink]="['/sidebar/','MD Department']">MD({{employeecount.mdCount}})</a></div>
+    <div><a [routerLink]="['/sidebar/','Sales']">Sales({{employeecount.salesCount}})</a></div>
     <h3 class="mt-5">Offices</h3>
-    <div ><a [routerLink]="['/sidebar','Seatle']">Seatle({{seatleCount}})</a></div>
-    <div ><a [routerLink]="['/sidebar','India']">India({{indiaCount}})</a></div>
+    <div ><a [routerLink]="['/sidebar','Seatle']">Seatle({{employeecount.seatleCount}})</a></div>
+    <div ><a [routerLink]="['/sidebar','India']">India({{employeecount.indiaCount}})</a></div>
     <h3 class="mt-5">Job Titles</h3>
-    <div><a [routerLink]="['/sidebar','SharePoint Practice Head']">SharePoint Practice Head({{sharepointCount}})</a></div>
-    <div><a [routerLink]="['/sidebar','.Net Development Lead']">.Net Development Lead({{netCount}})</a></div>
-    <div><a [routerLink]="['/sidebar','Recruiting Expert']">Recruiting Expert({{reCount}})</a></div>
-    <div><a [routerLink]="['/sidebar','BI Developer']">BI Developer({{biCount}})</a></div>
-    <div><a [routerLink]="['/sidebar','Business Analyst']">Business Analyst({{baCount}})</a></div>
-    <div *ngIf='more'>
-        <a  (click)="viewMore()" class="text-primary">view more</a>
+    <div><a [routerLink]="['/sidebar','SharePoint Practice Head']">SharePoint Practice Head({{employeecount.sharepointCount}})</a></div>
+    <div><a [routerLink]="['/sidebar','.Net Development Lead']">.Net Development Lead({{employeecount.netCount}})</a></div>
+    <div><a [routerLink]="['/sidebar','Recruiting Expert']">Recruiting Expert({{employeecount.reCount}})</a></div>
+    <div><a [routerLink]="['/sidebar','BI Developer']">BI Developer({{employeecount.biCount}})</a></div>
+    <div><a [routerLink]="['/sidebar','Business Analyst']">Business Analyst({{employeecount.baCount}})</a></div>
+    <div *ngIf="!isViewMore">
+        <div><a [routerLink]="['/sidebar','Operations Manger']">Operations Manger({{employeecount.omCount}})</a></div>
+        <div><a [routerLink]="['/sidebar','Product Manger']">Product Manger({{employeecount.pmCount}})</a></div>
+        <div><a [routerLink]="['/sidebar','Software Engineer']">Software Engineer({{employeecount.seCount}})</a></div>
     </div>
-    <div *ngIf="less">
-        <div><a [routerLink]="['/sidebar','Operations Manger']">Operations Manger({{omCount}})</a></div>
-        <div><a [routerLink]="['/sidebar','Product Manger']">Product Manger({{pmCount}})</a></div>
-        <div><a [routerLink]="['/sidebar','Software Engineer']">Software Engineer({{seCount}})</a></div>
-        <a  ng-model="more" class="text-primary" (click)="viewLess()">view less</a>
-    </div>
+    <a  ng-model="more" class="text-primary" (click)="toggleViewMore()">view {{isViewMore ? "more" : "less"}}</a>
     
 
    

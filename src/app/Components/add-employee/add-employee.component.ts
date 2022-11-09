@@ -1,20 +1,9 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Employee } from 'src/app/Model/employee';
 import { EmployeeListService } from 'src/app/Service/employee-list.service';
-import { FormsModule } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { JobsList } from 'src/app/Model/jobs-list';
-import { EmployeeDepartment } from 'src/app/Model/employee-department';
-import { EmployeeDetailsComponent } from '../employee-details/employee-details.component';
-import { observable, Observable, Subscriber } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { Observable, Subscriber, Subscription } from 'rxjs';
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
@@ -25,24 +14,25 @@ export class AddEmployeeComponent implements OnInit {
   @ViewChild('closebutton') closebutton: {
     nativeElement: { click: () => void };
   };
-  employeeProfile:string=''
-  firstName:string='';
-  lastName:string='';
-  preferredName:string='';
-  job:string;
-  department:string;
-  office:string
-  email:string;
-  phoneNumber:Number;
-  skypeId:string;
+  imageSubscription: Subscription;
+  employeeProfile: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  preferredName: string = '';
+  job: string;
+  department: string;
+  office: string;
+  email: string;
+  phoneNumber: Number;
+  skypeId: string;
   employeeId: number = 1;
   employee: Employee;
   addform: FormGroup;
-  submitted = false;
-  openAddform:boolean;
-  addButton:boolean=true
-  updateButton:boolean=false
-  deleteButton:boolean=false;
+  onSubmit = false;
+  openAddform: boolean;
+  addButton: boolean = true;
+  updateButton: boolean = false;
+  deleteButton: boolean = false;
   rawStoredEmployeeList: string;
   jobsList = [
     'SharePoint Practice Head',
@@ -63,14 +53,10 @@ export class AddEmployeeComponent implements OnInit {
   ];
   constructor(
     private employeelistservice: EmployeeListService,
-    private router: Router,
     private dialog: MatDialog
-  
   ) {}
   ngOnInit(): void {
-   
     this.addform = new FormGroup({
-     
       firstname: new FormControl(null, Validators.required),
       lastname: new FormControl(null, Validators.required),
       preferredname: new FormControl(null),
@@ -87,34 +73,25 @@ export class AddEmployeeComponent implements OnInit {
       ]),
       skypeid: new FormControl(null),
     });
-    if(this.employeelistservice.openUpdateForm){
-      this.updatedetails()
-      this.addButton=false;
-      this.updateButton=true;
-      this.deleteButton=true;
+    if (this.employeelistservice.openUpdateForm) {
+      this.updatedetails();
+      this.addButton = false;
+      this.updateButton = true;
+      this.deleteButton = true;
     }
-    
   }
 
   addEmployee() {
-    
-   
-    if(this.employeelistservice.openAddForm){
-     
-      if(this.employeelistservice.allEmployees===null){
-        this.employeeId=1
-      }
-      else{
+    if (this.employeelistservice.openAddForm) {
+      if (this.employeelistservice.allEmployees === null) {
+        this.employeeId = 1;
+      } else {
         this.employeeId = this.employeelistservice.allEmployees.length + 1;
       }
-     
-      this.submitted = true;
-
-      
-  
+      this.onSubmit = true;
       if (this.addform.valid) {
         alert('Employee Details Added succesfully!!!');
-       
+
         this.employee = new Employee(
           this.employeeId,
           this.employeeProfile,
@@ -128,58 +105,52 @@ export class AddEmployeeComponent implements OnInit {
           this.addform.controls['phonenumber'].value,
           this.addform.controls['skypeid'].value
         );
-       
         this.employeelistservice.addEmployee(this.employee);
-        this.closeDialog()
-        // this.router.navigate(['']);
+        this.closeDialog();
       }
     }
-    if(this.employeelistservice.openUpdateForm){
-     
+    if (this.employeelistservice.openUpdateForm) {
       if (this.addform.valid) {
-      
-        this.employee.FirstName = this.addform.controls['firstname'].value,
-            this.employee.LastName =  this.addform.controls['lastname'].value,
-            this.employee.PreferredName =   this.addform.controls['preferredname'].value,
-            this.employee.employeeProfile=this.employeeProfile
-            this.employeeProfile= this.employee.employeeProfile
-            this.employee.Job =  this.addform.controls['job'].value,
-            this.employee.office = this.addform.controls['office'].value,
-            this.employee.Department =  this.addform.controls['department'].value,
-         
-            this.employee.SkypeId =   this.addform.controls['skypeid'].value
-            this.employee.PhoneNumber =  this.addform.controls['phonenumber'].value,
-            this.employee.Email =  this.addform.controls['email'].value,
-           this.employeelistservice.updateEmployeeDetails(this.employee)
-         
-            this.closeDialog();
-            localStorage.setItem(
-              'employeelist',
-              JSON.stringify(this.employeelistservice.allEmployees)
-            );
-            this.employeelistservice.populateCount(
-              this.employeelistservice.allEmployees
-            );
-            alert('Employee Details Updated succesfully!!!');
-            }
-            this.employeelistservice.detailssPopUp(this.employee)
-        }
+        (this.employee.FirstName = this.addform.controls['firstname'].value),
+          (this.employee.LastName = this.addform.controls['lastname'].value),
+          (this.employee.PreferredName =
+            this.addform.controls['preferredname'].value),
+          (this.employee.employeeProfile = this.employeeProfile);
+        this.employeeProfile = this.employee.employeeProfile;
+        (this.employee.Job = this.addform.controls['job'].value),
+          (this.employee.office = this.addform.controls['office'].value),
+          (this.employee.Department =
+            this.addform.controls['department'].value),
+          (this.employee.SkypeId = this.addform.controls['skypeid'].value);
+        (this.employee.PhoneNumber =
+          this.addform.controls['phonenumber'].value),
+          (this.employee.Email = this.addform.controls['email'].value),
+          this.employeelistservice.updateEmployeeDetails(this.employee);
+        this.closeDialog();
+        localStorage.setItem(
+          'employeelist',
+          JSON.stringify(this.employeelistservice.allEmployees)
+        );
+        this.employeelistservice.populateCount(
+          this.employeelistservice.allEmployees
+        );
+        alert('Employee Details Updated succesfully!!!');
+      }
+      this.employeelistservice.detailsPopUp(this.employee);
     }
+  }
 
   closeDialog() {
-  
-   this.dialog.closeAll()
-    
+    this.dialog.closeAll();
   }
-  autoPopulated(){
-   
-    this.preferredName=  this.firstName+' '+this.lastName
-   
-  }
-  updatedetails() {
 
+  autoPopulated() {
+    this.preferredName = `${this.firstName}  ${this.lastName}`;
+  }
+
+  updatedetails() {
     this.employee = this.employeelistservice.employeeDetail;
-    this.employeeProfile=this.employee.employeeProfile
+    this.employeeProfile = this.employee.employeeProfile;
     this.firstName = this.employee.FirstName;
     this.lastName = this.employee.LastName;
     this.job = this.employee.Job;
@@ -189,34 +160,20 @@ export class AddEmployeeComponent implements OnInit {
     this.phoneNumber = this.employee.PhoneNumber;
     this.office = this.employee.office;
     this.preferredName = this.employee.PreferredName;
-   
   }
 
-  
-  deleteEmployee(){
-   
-    alert('Employee Details Deleted succesfully!!!');
-    let id=this.employeelistservice.employeeDetail.employeeId;
-    this.employeelistservice.deleteEmployee(id)
-    this.employeelistservice.openUpdateForm=false
-    this.closeDialog();
-    
+  onChanges($event: Event) {
+    const file = ($event.target as HTMLInputElement).files[0];
+    this.convertToBase64(file);
   }
-  onChanges($event:Event){
-    
-    const file=($event.target as HTMLInputElement).files[0]
-   this.convertToBase64(file)
-  }
+
   convertToBase64(file: File) {
-   
     let image = new Observable((subscriber: Subscriber<any>) => {
       this.readFile(file, subscriber);
     });
-    image.subscribe((string=>{
-      this.employeeProfile=string
-     
-     
-    }));
+    image.subscribe((string) => {
+      this.employeeProfile = string;
+    });
   }
 
   readFile(file: File, subscriber: Subscriber<any>) {
@@ -232,4 +189,5 @@ export class AddEmployeeComponent implements OnInit {
       subscriber.complete();
     };
   }
+  ngOnDestroy() {}
 }
